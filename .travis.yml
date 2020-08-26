@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - 12.9.0
+cache: npm
+
+install:
+  - npm ci
+
+script:
+  - npm run build
+
+deploy:
+  provider: heroku
+  app: seer-team3
+  api_key:
+    secure: "487c8321-68c4-4a30-875a-f434f58d08ef"
