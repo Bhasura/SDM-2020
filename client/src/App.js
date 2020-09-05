@@ -9,7 +9,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           <code>Hello</code>
-          <h3>SHERIN WAS HERE</h3>
+          <h3>SHERIN WAS HERE 05/09</h3>
           <h3>NISHANT WAS HERE</h3>
           <h3>JESPHILMAR WAS HERE</h3>
           <h3>BRIAN WAS HERE</h3>
