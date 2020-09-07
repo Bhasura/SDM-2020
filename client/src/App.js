@@ -1,12 +1,9 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import Register from './components/Register.jsx';
+import Register from "./components/Register.jsx";
 
 function App() {
-  return (
-    <Register />
-  );
+  return <Register />;
 }
 
 export default App;
