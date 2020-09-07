@@ -3,6 +3,7 @@ node_js:
   - 12.9.0
 
 install:
+  - rm -rf node_modules
   - npm cache clean --force
   - npm ci
 
