@@ -1,44 +1,32 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const morgan = require("morgan");
-const path = require("path");
+var express = require('express')
+var cors = require('cors')
+var bodyParser = require('body-parser')
+var app = express()
+const mongoose = require('mongoose')
+var port = process.env.PORT || 8080
 
-const app = express();
-const PORT = process.env.PORT || 8080; // Step 1
-const MONGODB_URI =
-  "mongodb+srv://Brian:Seerteam3@cluster0.qv19c.mongodb.net/test?retryWrites=true&w=majority";
+app.use(bodyParser.json())
+app.use(cors())
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+)
 
-mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const mongoURI = "mongodb+srv://Brian:Seerteam3@cluster0.qv19c.mongodb.net/test?retryWrites=true&w=majority"
 
-//check if mongoose is connected
-mongoose.connection.on("connected", () => {
-  console.log("Mongoose is connected");
-});
+mongoose
+  .connect(
+    mongoURI,
+    { useNewUrlParser: true }
+  )
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err))
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+var Users = require('./routes/Users')
 
-const Schema = mongoose.Schema;
-const BlogPostsSchema = new Schema({
-  name: String,
-});
+app.use('/users', Users)
 
-const BlogPost = mongoose.model("BlogPosts", BlogPostsSchema);
-
-app.get("/api", (req, res) => {
-  BlogPost.find({})
-    .then((data) => {
-      console.log("Data: ", data);
-      res.json(data);
-    })
-    .catch((error) => {
-      console.log("error: ", daerrorta);
-    });
-});
-app.use(morgan("tiny"));
-
-app.listen(PORT, console.log(`Server is starting at ${PORT}`));
+app.listen(port, function() {
+  console.log('Server is running on port: ' + port)
+})
