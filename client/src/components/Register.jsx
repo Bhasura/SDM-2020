@@ -38,7 +38,7 @@ export default class Register extends Component {
     }
 
     register(newUser).then(res => {
-      this.props.history.push(`/login`)
+      //this.props.history.push(`/register`) //register instead of login because login hasn't been developed yet
     })
   }
 
