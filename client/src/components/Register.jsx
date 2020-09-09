@@ -1,64 +1,125 @@
-import React from 'react';
-import { Component } from 'react';
-import {Button, Container, TextField, Typography, InputLabel, Select, MenuItem} from '@material-ui/core';
+import React from "react";
+import { Component } from "react";
+import {register} from "./UserFunctions";
+import {
+  Button,
+  Container,
+  TextField,
+  Typography
+} from "@material-ui/core";
 
 export default class Register extends Component {
 
-    constructor(props) {
-        super(props);
+  constructor(){
+    super()
+    this.state = {
+      email: '',
+      username: '',
+      password: '',
+      organisation: '',
+      user_type: ''
+    }
+    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+  onSubmit(e) {
+    e.preventDefault()
+
+    const newUser = {
+      email: this.state.email,
+      username: this.state.username,
+      password: this.state.password,
+      organisation: this.state.organisation,
+      user_type: this.state.user_type
     }
 
-    render () {
-        return (
-            <Container component = "main">
-                <Typography component = "h1" variant = "h5">Register</Typography>
-                <form noValidate>
-                    <TextField 
-                        variant = "outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        autoComplete="email"
-                        autoFocus
-                        id = "email" 
-                        label = "Email Address" 
-                        name = "email">
-                    </TextField>
-                    <TextField 
-                        variant = "outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        autoComplete="password"
-                        autoFocus
-                        id = "password" 
-                        label = "Password" 
-                        name = "password">
-                    </TextField>
-                    <TextField 
-                        variant = "outlined"
-                        margin="normal"
-                        fullWidth
-                        autoFocus
-                        id = "organisation" 
-                        label = "Organisation" 
-                        name = "organisation">
-                    </TextField>
-                    <InputLabel id="label">User Type</InputLabel>
-                        <Select labelId="label" id="select" value="20">
-                            <MenuItem value="10">Student</MenuItem>
-                            <MenuItem value="20">Software Engineer</MenuItem>
-                        </Select>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary">
-                        Register
-                    </Button>      
-                </form>
-            </Container>
-        ) ;
-    }
+    register(newUser).then(res => {
+      //this.props.history.push(`/register`) //register instead of login because login hasn't been developed yet
+    })
+  }
 
+  render() {
+    return (
+      <Container component="main">
+        <Typography component="h1" variant="h5">
+          Register
+        </Typography>
+        <form noValidate onSubmit = {this.onSubmit}>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            autoComplete="email"
+            autoFocus
+            id="email"
+            label="Email Address"
+            name="email"
+            value = {this.state.email}
+            onChange = {this.onChange}
+          ></TextField>
+          
+           <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            autoComplete="username"
+            autoFocus
+            id="username"
+            label="Username"
+            name="username"
+            value = {this.state.username}
+            onChange = {this.onChange}
+          ></TextField>
+          
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            autoComplete="password"
+            autoFocus
+            id="password"
+            label="Password"
+            name="password"
+            value = {this.state.password}
+            onChange = {this.onChange}
+          ></TextField>
+          
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            autoFocus
+            id="organisation"
+            label="Organisation"
+            name="organisation"
+            value = {this.state.organisation}
+            onChange = {this.onChange}
+          ></TextField>
+          
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            autoFocus
+            id="user_type"
+            label="User Type"
+            name="user_type"
+            value = {this.state.user_type}
+            onChange = {this.onChange}
+          ></TextField>
+          
+          <Button type="submit" fullWidth variant="contained" color="primary">
+            Register
+          </Button>
+        </form>
+      </Container>
+    );
+  }
 }
