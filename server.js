@@ -27,7 +27,7 @@ var Users = require('./routes/Users')
 
 app.use('/users', Users)
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging' ) {
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'client/build')));
 
