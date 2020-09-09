@@ -1,16 +1,11 @@
-import React from 'react';
-import Register from '/client/src/components/Register.jsx';
+import React, {Component} from 'react';
+import Register from '../components/Register';
 
-export class Register extends Component {
-
-    constructor(props) {
-        super(props);
-    }
+export default class Signin extends Component {
 
     render () {
-        return () => {
-            
-        }
+        return (
+            <Register/>
+        )
     }
-
 }
