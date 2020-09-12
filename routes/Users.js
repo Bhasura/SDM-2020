@@ -50,37 +50,3 @@ users.post("/register", (req, res) => {
 });
 
 module.exports = users;
-
-module.exports = users;
-
-module.exports = users;
-
-module.exports = users;
-
-module.exports = users;
-
-module.exports = users;
-
-module.exports = users;
-
-module.exports = users;
-
-module.exports = users;
-
-module.exports = users;
-
-module.exports = users;
-
-module.exports = users;
-
-module.exports = users;
-
-module.exports = users;
-
-module.exports = users;
-
-module.exports = users;
-
-module.exports = users;
-
-module.exports = users;

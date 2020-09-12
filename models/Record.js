@@ -22,6 +22,10 @@ const RecordSchema = new Schema({
     type: String,
     required: true,
   },
+  se_practice: {
+    type: String,
+    required: true
+  }
 });
 
 module.exports = Record = mongoose.model("records", RecordSchema);

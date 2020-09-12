@@ -27,6 +27,7 @@ const Navbar = () => {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>SEER</Typography>
+                    <Button color="inherit" component={Link} to="/search">Search</Button>
                     <Button color="inherit" component={Link} to="/register">Register/Login</Button>
                 </Toolbar>
             </AppBar>
