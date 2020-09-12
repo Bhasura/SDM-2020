@@ -1,15 +1,15 @@
-import axios from 'axios'
+import axios from "axios";
 
-export const register = newUser => {
+export const register = (newUser) => {
   return axios
-    .post('users/register', {
+    .post("/register", {
       email: newUser.email,
       username: newUser.username,
       password: newUser.password,
       organisation: newUser.organisation,
-      user_type: newUser.user_type
+      user_type: newUser.user_type,
     })
-    .then(response => {
-      console.log('Registered')
-    })
-}
+    .then((response) => {
+      console.log("Registered");
+    });
+};
