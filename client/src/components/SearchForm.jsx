@@ -1,6 +1,6 @@
 import React from "react";
 import { Component } from "react";
-import { Container, TextField, Grid } from "@material-ui/core";
+import { TextField, Grid } from "@material-ui/core";
 import axios from "axios";
 import RecordResults from "../components/RecordResults";
 
@@ -39,28 +39,27 @@ export default class SearchForm extends Component {
     console.log(this.state.records);
     return (
       <div style={{ padding: 150 }}>
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-          spacing={3}
-        >
-          <Container component="main" maxWidth="md">
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              autoFocus
-              id="search_description"
-              label="Search Description"
-              name="search_description"
-              value={this.state.search_description}
-              onChange={this.onTextChange}
-              InputProps={{ style: styles.input }}
-            ></TextField>
-          </Container>
+        <Grid container direction="column" spacing={3}>
+          <Grid item container>
+            <Grid item xs={0} sm={2} />
+            <Grid item xs={12} sm={8}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                autoFocus
+                id="search_description"
+                label="Search Description"
+                name="search_description"
+                value={this.state.search_description}
+                onChange={this.onTextChange}
+                InputProps={{ style: styles.input }}
+              ></TextField>
+            </Grid>
+            <Grid item xs={0} sm={2} />
+          </Grid>
         </Grid>
+
         {this.state.records.length > 0 ? (
           <RecordResults records={this.state.records} />
         ) : null}
