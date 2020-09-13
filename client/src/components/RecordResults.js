@@ -31,9 +31,9 @@ class RecordResults extends Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {records.map((p) => {
+                {records.map((p, index) => {
                   return (
-                    <TableRow>
+                    <TableRow key={index}>
                       <TableCell align="right">{p.title}</TableCell>
                       <TableCell align="right">{p.author}</TableCell>
                       <TableCell align="right">{p.year}</TableCell>

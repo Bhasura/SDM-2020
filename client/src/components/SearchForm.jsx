@@ -41,7 +41,7 @@ export default class SearchForm extends Component {
       <div style={{ padding: 150 }}>
         <Grid container direction="column" spacing={3}>
           <Grid item container>
-            <Grid item xs={0} sm={2} />
+            <Grid item xs={1} sm={2} />
             <Grid item xs={12} sm={8}>
               <TextField
                 variant="outlined"
@@ -56,7 +56,7 @@ export default class SearchForm extends Component {
                 InputProps={{ style: styles.input }}
               ></TextField>
             </Grid>
-            <Grid item xs={0} sm={2} />
+            <Grid item xs={1} sm={2} />
           </Grid>
         </Grid>
 
