@@ -1,19 +1,53 @@
 import React from "react";
 import { Component } from "react";
-import {
-    Container,
-    Typography
-  } from "@material-ui/core";
-  
+import { Container, TextField, Grid } from "@material-ui/core";
 
-export default class SearchForm extends Component{
-    render() {
-        return (
-          <Container component="main">
-            <Typography component="h1" variant="h5">
-              Search
-            </Typography>
+const styles = {
+  input: {
+    backgroundColor: "white",
+  },
+};
+
+export default class SearchForm extends Component {
+  constructor() {
+    super();
+    this.state = {
+      search_description: "",
+      amount: 15,
+      records: [],
+    };
+  }
+
+  onTextChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  render() {
+    return (
+      <div style={{ padding: 150 }}>
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+          spacing={3}
+        >
+          <Container component="main" maxWidth="md">
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              autoFocus
+              id="search_description"
+              label="Search Description"
+              name="search_description"
+              value={this.state.search_description}
+              onChange={this.onTextChange}
+              InputProps={{ style: styles.input }}
+            ></TextField>
           </Container>
-        )
-    }
+        </Grid>
+      </div>
+    );
+  }
 }

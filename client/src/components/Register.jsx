@@ -1,13 +1,8 @@
 import React from "react";
 import { Component } from "react";
 import { register } from "./UserFunctions";
-import {
-  Button,
-  Container,
-  TextField,
-  Typography,
-  makeStyles,
-} from "@material-ui/core";
+import { Button, Container, TextField, Typography } from "@material-ui/core";
+
 const styles = {
   input: {
     backgroundColor: "white",
@@ -113,7 +108,6 @@ export default class Register extends Component {
 
           <TextField
             variant="outlined"
-            color="white"
             margin="normal"
             fullWidth
             autoFocus

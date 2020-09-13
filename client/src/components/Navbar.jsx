@@ -32,15 +32,21 @@ const Navbar = () => {
       }}
       position="static"
     >
-      <Toolbar>
+      <Toolbar style={{ margin: 10 }}>
         <Typography variant="h6" className={classes.title}>
           SEER
         </Typography>
         <Button color="inherit" component={Link} to="/search">
           Search
         </Button>
-        <Button color="inherit" component={Link} to="/register">
-          Register/Login
+        <Button
+          variant="outlined"
+          color="inherit"
+          component={Link}
+          to="/register"
+          size="medium"
+        >
+          Login/Register
         </Button>
       </Toolbar>
     </AppBar>
