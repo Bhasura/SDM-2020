@@ -2,6 +2,7 @@ import React from "react";
 import { Component } from "react";
 import { Container, TextField, Grid } from "@material-ui/core";
 import axios from "axios";
+import RecordResults from "../components/RecordResults";
 
 const styles = {
   input: {
@@ -60,6 +61,9 @@ export default class SearchForm extends Component {
             ></TextField>
           </Container>
         </Grid>
+        {this.state.records.length > 0 ? (
+          <RecordResults records={this.state.records} />
+        ) : null}
       </div>
     );
   }
