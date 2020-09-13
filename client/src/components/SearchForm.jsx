@@ -1,6 +1,7 @@
 import React from "react";
 import { Component } from "react";
 import { Container, TextField, Grid } from "@material-ui/core";
+import axios from "axios";
 
 const styles = {
   input: {
@@ -19,10 +20,22 @@ export default class SearchForm extends Component {
   }
 
   onTextChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value }, () => {
+      axios
+        .get("/records", {
+          params: {
+            search_description: this.state.search_description,
+          },
+        })
+        .then((res) => {
+          this.setState({ records: res.data });
+        })
+        .catch((err) => console.log(err));
+    });
   };
 
   render() {
+    console.log(this.state.records);
     return (
       <div style={{ padding: 150 }}>
         <Grid

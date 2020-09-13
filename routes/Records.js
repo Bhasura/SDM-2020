@@ -9,7 +9,9 @@ records.get("/records", function (req, res) {
   Record.find(
     {
       $or: [
-        { se_practice: { $regex: ".*" + req.body.search_description + ".*" } },
+        {
+          se_practice: { $regex: ".*" + req.query.search_description + ".*" },
+        },
       ],
     },
     function (err, records) {
