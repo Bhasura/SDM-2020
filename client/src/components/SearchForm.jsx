@@ -1,14 +1,9 @@
 import React from "react";
 import { Component } from "react";
-import {
-  Grid,
-  Button,
-  InputLabel,
-  MenuItem,
-  Select,
-} from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import axios from "axios";
 import RecordResults from "../components/RecordResults";
+import SearchQuery from "./SearchQuery";
 
 export default class SearchForm extends Component {
   constructor() {
@@ -23,7 +18,7 @@ export default class SearchForm extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    
+
     this.setState({ [e.target.name]: e.target.value }, () => {
       axios
         .get("/records", {
@@ -51,23 +46,10 @@ export default class SearchForm extends Component {
             <Grid item xs={1} sm={2} />
             <Grid item xs={12} sm={8}>
               <form noValidate onSubmit={this.onSubmit}>
-                <InputLabel id="demo-simple-select-outlined-label">
-                  SE Practice
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-outlined-label"
-                  id="demo-simple-select-outlined"
-                  value={this.state.se_practice}
-                  onChange={this.handleChange}
-                  label="SE Practice"
-                  name="se_practice"
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={"TDD"}>TDD</MenuItem>
-                  <MenuItem value={"Agile"}>Agile</MenuItem>
-                </Select>
+                <SearchQuery
+                  se_practice={this.state.se_practice}
+                  handleChange={this.handleChange}
+                />
                 <Grid item xs={1} sm={2} md={5} />
                 <Button type="submit" variant="contained" color="primary">
                   Search
