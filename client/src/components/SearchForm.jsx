@@ -1,31 +1,34 @@
 import React from "react";
 import { Component } from "react";
-import { TextField, Grid } from "@material-ui/core";
+import {
+  Grid,
+  Button,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@material-ui/core";
 import axios from "axios";
 import RecordResults from "../components/RecordResults";
-
-const styles = {
-  input: {
-    backgroundColor: "white",
-  },
-};
 
 export default class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
-      search_description: "",
+      se_practice: "",
       amount: 15,
       records: [],
     };
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  onTextChange = (e) => {
+  onSubmit = (e) => {
+    e.preventDefault();
+    
     this.setState({ [e.target.name]: e.target.value }, () => {
       axios
         .get("/records", {
           params: {
-            search_description: this.state.search_description,
+            se_practice: this.state.se_practice,
           },
         })
         .then((res) => {
@@ -35,6 +38,10 @@ export default class SearchForm extends Component {
     });
   };
 
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
   render() {
     console.log(this.state.records);
     return (
@@ -43,18 +50,32 @@ export default class SearchForm extends Component {
           <Grid item container>
             <Grid item xs={1} sm={2} />
             <Grid item xs={12} sm={8}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                autoFocus
-                id="search_description"
-                label="Search Description"
-                name="search_description"
-                value={this.state.search_description}
-                onChange={this.onTextChange}
-                InputProps={{ style: styles.input }}
-              ></TextField>
+              <form noValidate onSubmit={this.onSubmit}>
+                <InputLabel id="demo-simple-select-outlined-label">
+                  SE Practice
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-outlined-label"
+                  id="demo-simple-select-outlined"
+                  value={this.state.se_practice}
+                  onChange={this.handleChange}
+                  label="SE Practice"
+                  name="se_practice"
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={"TDD"}>TDD</MenuItem>
+                  <MenuItem value={"Agile"}>Agile</MenuItem>
+                </Select>
+                <Grid item xs={1} sm={2} md={5} />
+                <Button type="submit" variant="contained" color="primary">
+                  Search
+                </Button>
+                <Button type="cancel" variant="contained" color="primary">
+                  Cancel
+                </Button>
+              </form>
             </Grid>
             <Grid item xs={1} sm={2} />
           </Grid>
