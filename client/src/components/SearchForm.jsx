@@ -4,6 +4,7 @@ import { Grid, Button } from "@material-ui/core";
 import axios from "axios";
 import RecordResults from "../components/RecordResults";
 import SearchQuery from "./SearchQuery";
+import DateSlider from "./DateSlider";
 
 export default class SearchForm extends Component {
   constructor() {
@@ -46,6 +47,7 @@ export default class SearchForm extends Component {
             <Grid item xs={1} sm={2} />
             <Grid item xs={12} sm={8}>
               <form noValidate onSubmit={this.onSubmit}>
+                <DateSlider/>
                 <SearchQuery
                   se_practice={this.state.se_practice}
                   handleChange={this.handleChange}

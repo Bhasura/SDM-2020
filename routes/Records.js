@@ -25,17 +25,4 @@ records.get("/records", function (req, res) {
   );
 });
 
-records.get("/record_attributes", function (req, res) {
-  RecordAttributes.find({}, {se_practice:1, _id:0},
-    function (err, records) {
-      if (err) {
-        res.send(err);
-      }
-      console.log(records);
-      res.json(records);
-    }
-  )
- }
-)
-
 module.exports = records;
