@@ -3,15 +3,15 @@ const records = express.Router();
 const cors = require("cors");
 
 const Record = require("../models/Record");
-const RecordAttributes = require("../models/RecordAttributes")
 records.use(cors());
 
 records.get("/records", function (req, res) {
   Record.find(
     {
-      $or: [
+      $and: [
         {
           se_practice: { $regex: ".*" + req.query.se_practice + ".*" },
+          year: {$gte: req.query.from_date, $lt: req.query.to_date}
         },
       ],
     },

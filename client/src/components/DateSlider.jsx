@@ -1,39 +1,44 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Slider} from '@material-ui/core';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Typography, Slider, Paper } from "@material-ui/core";
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles((theme) => ({
   root: {
     width: 200,
+    height: 70,
+    padding: 10,
   },
-});
+}));
 
 function valuetext(value) {
   return `${value}`;
 }
 
-export default function RangeSlider() {
+export default function RangeSlider(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState([1999, 2008]);
+  const [value, setValue] = React.useState([2015, 2020]);
+  const dates = value;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    props.callbackFromParent(dates);
   };
 
   return (
-    <div className={classes.root}>
-      <Typography id="range-slider" gutterBottom>
-        Select Date Range
-      </Typography>
-      <Slider
-        value={value}
-        onChange={handleChange}
-        valueLabelDisplay="auto"
-        aria-labelledby="range-slider"
-        getAriaValueText={valuetext}
-        min={1990}
-        max={2020}
-      />
-    </div>
+    <Paper elevation={7} variant="outlined" className={classes.root}>
+        <Typography id="range-slider" gutterBottom>
+          Select Date Range
+        </Typography>
+        <Slider
+          value={value}
+          onChange={handleChange}
+          valueLabelDisplay="auto"
+          aria-labelledby="range-slider"
+          getAriaValueText={valuetext}
+          min={1990}
+          max={2020}
+        />
+    </Paper>
   );
 }

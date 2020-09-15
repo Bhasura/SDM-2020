@@ -11,6 +11,8 @@ export default class SearchForm extends Component {
     super();
     this.state = {
       se_practice: "",
+      from_date: "",
+      to_date: "",
       amount: 15,
       records: [],
     };
@@ -25,6 +27,8 @@ export default class SearchForm extends Component {
         .get("/records", {
           params: {
             se_practice: this.state.se_practice,
+            from_date: this.state.from_date,
+            to_date: this.state.to_date
           },
         })
         .then((res) => {
@@ -38,6 +42,11 @@ export default class SearchForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  myCallback = (datafromDateSlider) => {
+    this.setState({from_date:datafromDateSlider[0]});
+    this.setState({to_date:datafromDateSlider[1]});
+  }
+
   render() {
     console.log(this.state.records);
     return (
@@ -47,7 +56,9 @@ export default class SearchForm extends Component {
             <Grid item xs={1} sm={2} />
             <Grid item xs={12} sm={8}>
               <form noValidate onSubmit={this.onSubmit}>
-                <DateSlider/>
+                <DateSlider
+                  callbackFromParent={this.myCallback}
+                />
                 <SearchQuery
                   se_practice={this.state.se_practice}
                   handleChange={this.handleChange}
