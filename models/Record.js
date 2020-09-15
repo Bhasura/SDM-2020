@@ -25,6 +25,10 @@ const RecordSchema = new Schema({
   se_practice: {
     type: String,
     required: true
+  },
+  claims: {
+    type: [],
+    required: true
   }
 });
 

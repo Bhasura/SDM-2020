@@ -28,6 +28,7 @@ class RecordResults extends Component {
                   <TableCell align="right">Type</TableCell>
                   <TableCell align="right">Journal</TableCell>
                   <TableCell align="right">SE Practice</TableCell>
+                  <TableCell align="right">Claims</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -40,18 +41,19 @@ class RecordResults extends Component {
                       <TableCell align="right">{p.type}</TableCell>
                       <TableCell align="right">{p.journal}</TableCell>
                       <TableCell align="right">{p.se_practice}</TableCell>
+                      <TableCell align="right">{p.claims}</TableCell>
                     </TableRow>
                   );
                 })}
               </TableBody>
             </Table>
           </TableContainer>
-          )
         </Grid>
       );
     } else {
       recordListContent = null;
     }
+    console.log(recordListContent);
     return <div>{recordListContent}</div>;
   }
 }

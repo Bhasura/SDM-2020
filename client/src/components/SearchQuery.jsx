@@ -35,18 +35,18 @@ const SearchQuery = (props) => {
         <Grid item>
           <FormControl className={classes.formControl}>
             <InputLabel id="demo-simple-select-outlined-label">
-              SE Practice
+              Name of Field
             </InputLabel>
             <Select
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
-              value={props.se_practice}
+              //value={props.se_practice}
               onChange={props.handleChange}
-              label="SE Practice"
-              name="se_practice"
+              label="Name of Field"
+              name="name_of_field"
             >
-              <MenuItem value={"TDD"}>TDD</MenuItem>
-              <MenuItem value={"Agile"}>Agile</MenuItem>
+              <MenuItem value={"SE Practice"}>SE Practice</MenuItem>
+              <MenuItem value={"Title"}>Title</MenuItem>
             </Select>
           </FormControl>
 
@@ -57,7 +57,7 @@ const SearchQuery = (props) => {
             <Select
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
-              value={props.se_practice}
+              //value={props.se_practice}
               onChange={props.handleChange}
               label="Operator"
               name="operator"
@@ -76,8 +76,8 @@ const SearchQuery = (props) => {
               id="demo-simple-select-outlined"
               value={props.se_practice}
               onChange={props.handleChange}
-              label="Value"
-              name="value"
+              label="SE Practice"
+              name="se_practice"
             >
               <MenuItem value={"TDD"}>TDD</MenuItem>
               <MenuItem value={"Agile"}>Agile</MenuItem>
