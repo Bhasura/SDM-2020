@@ -40,7 +40,7 @@ const SearchQuery = (props) => {
             <Select
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
-              //value={props.se_practice}
+              //value={props.name_of_field}
               onChange={props.handleChange}
               label="Name of Field"
               name="name_of_field"
@@ -57,7 +57,7 @@ const SearchQuery = (props) => {
             <Select
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
-              //value={props.se_practice}
+              //value={props.operator}
               onChange={props.handleChange}
               label="Operator"
               name="operator"

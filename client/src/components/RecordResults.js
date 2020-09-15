@@ -29,6 +29,7 @@ class RecordResults extends Component {
                   <TableCell align="right">Journal</TableCell>
                   <TableCell align="right">SE Practice</TableCell>
                   <TableCell align="right">Claims</TableCell>
+                  <TableCell align="right">DOI</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -42,6 +43,7 @@ class RecordResults extends Component {
                       <TableCell align="right">{p.journal}</TableCell>
                       <TableCell align="right">{p.se_practice}</TableCell>
                       <TableCell align="right">{p.claims}</TableCell>
+                      <TableCell align="right">{p.doi}</TableCell>
                     </TableRow>
                   );
                 })}

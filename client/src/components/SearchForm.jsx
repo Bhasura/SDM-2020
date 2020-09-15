@@ -11,8 +11,8 @@ export default class SearchForm extends Component {
     super();
     this.state = {
       se_practice: "",
-      from_date: "",
-      to_date: "",
+      from_date: "2015",
+      to_date: "2020",
       amount: 15,
       records: [],
     };
@@ -47,6 +47,12 @@ export default class SearchForm extends Component {
     this.setState({to_date:datafromDateSlider[1]});
   }
 
+  onCancel = (e) => {
+    this.setState({se_practice:""});
+    this.setState({from_date:"2015"});
+    this.setState({to_date:"2020"});
+  }
+
   render() {
     console.log(this.state.records);
     return (
@@ -58,6 +64,8 @@ export default class SearchForm extends Component {
               <form noValidate onSubmit={this.onSubmit}>
                 <DateSlider
                   callbackFromParent={this.myCallback}
+                  from_date={this.state.from_date}
+                  to_date={this.state.to_date}
                 />
                 <SearchQuery
                   se_practice={this.state.se_practice}
@@ -67,7 +75,7 @@ export default class SearchForm extends Component {
                 <Button type="submit" variant="contained" color="primary">
                   Search
                 </Button>
-                <Button type="cancel" variant="contained" color="primary">
+                <Button type="cancel" variant="contained" color="primary" onClick={this.onCancel}>
                   Cancel
                 </Button>
               </form>

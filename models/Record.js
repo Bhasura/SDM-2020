@@ -29,6 +29,10 @@ const RecordSchema = new Schema({
   claims: {
     type: [],
     required: true
+  },
+  doi: {
+    type: String,
+    required: true
   }
 });
 

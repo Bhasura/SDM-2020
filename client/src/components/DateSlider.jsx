@@ -13,11 +13,11 @@ const useStyles = makeStyles((theme) => ({
 
 function valuetext(value) {
   return `${value}`;
-}
+} 
 
 export default function RangeSlider(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState([2015, 2020]);
+  const [value, setValue] = React.useState([props.from_date, props.to_date]);
   const dates = value;
 
   const handleChange = (event, newValue) => {

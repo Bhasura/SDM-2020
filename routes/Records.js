@@ -11,7 +11,7 @@ records.get("/records", function (req, res) {
       $and: [
         {
           se_practice: { $regex: ".*" + req.query.se_practice + ".*" },
-          year: {$gte: req.query.from_date, $lt: req.query.to_date}
+          year: {$gte: req.query.from_date, $lte: req.query.to_date}
         },
       ],
     },
