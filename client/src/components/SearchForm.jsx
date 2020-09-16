@@ -92,6 +92,7 @@ export default class SearchForm extends Component {
                 <SearchQuery
                   se_practice={this.state.se_practice}
                   operators={this.state.operators}
+                  selected_operator={this.state.selected_operator}
                   name_of_field={this.state.name_of_field}
                   handleChange={this.handleChange}
                   handleFieldNameChange={this.handleFieldNameChange}

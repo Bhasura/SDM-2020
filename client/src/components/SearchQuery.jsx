@@ -57,7 +57,7 @@ const SearchQuery = (props) => {
             <Select
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
-              value={props.operators || ''}
+              value={props.selected_operator}
               onChange={props.handleChange}
               label="Operator"
               name="selected_operator"
