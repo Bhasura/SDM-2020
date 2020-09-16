@@ -10,9 +10,11 @@ export default class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
-      se_practice: "",
-      from_date: "2015",
-      to_date: "2020",
+      se_practice: '',
+      operator: '',
+      name_of_field: '',
+      from_date: 2015,
+      to_date: 2020,
       amount: 15,
       records: [],
     };
@@ -49,8 +51,8 @@ export default class SearchForm extends Component {
 
   onCancel = (e) => {
     this.setState({se_practice:""});
-    this.setState({from_date:"2015"});
-    this.setState({to_date:"2020"});
+    this.setState({from_date:2015});
+    this.setState({to_date:2020});
   }
 
   render() {
@@ -69,6 +71,8 @@ export default class SearchForm extends Component {
                 />
                 <SearchQuery
                   se_practice={this.state.se_practice}
+                  operator={this.state.operator}
+                  name_of_field={this.state.name_of_field}
                   handleChange={this.handleChange}
                 />
                 <Grid item xs={1} sm={2} md={5} />
