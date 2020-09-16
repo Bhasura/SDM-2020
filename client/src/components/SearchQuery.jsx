@@ -41,7 +41,7 @@ const SearchQuery = (props) => {
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
               value={props.name_of_field || ''}
-              onChange={props.handleChange}
+              onClick={props.handleFieldNameChange}
               label="Name of Field"
               name="name_of_field"
             >
@@ -57,13 +57,16 @@ const SearchQuery = (props) => {
             <Select
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
-              value={props.operator || ''}
+              value={props.operators || ''}
               onChange={props.handleChange}
               label="Operator"
-              name="operator"
+              name="selected_operator"
             >
-              <MenuItem value={"Is Equal To"}>Is Equal To</MenuItem>
-              <MenuItem value={"Is Not Equal To"}>Is Not Equal To</MenuItem>
+              {props.operators.map((p, index) => {
+                return (
+                     <MenuItem key={index} value={p.value}>{p.label}</MenuItem>
+                );
+              })}
             </Select>
           </FormControl>
 
@@ -85,11 +88,11 @@ const SearchQuery = (props) => {
           </FormControl>
 
           <IconButton aria-label="add">
-            <AddCircleOutlineIcon/>
+            <AddCircleOutlineIcon />
           </IconButton>
 
           <IconButton aria-label="remove">
-            <RemoveCircleOutlineIcon/>
+            <RemoveCircleOutlineIcon />
           </IconButton>
 
         </Grid>

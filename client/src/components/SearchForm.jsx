@@ -11,11 +11,11 @@ export default class SearchForm extends Component {
     super();
     this.state = {
       se_practice: '',
-      operator: '',
+      operators: [],
+      selected_operator: '',
       name_of_field: '',
       from_date: 2015,
       to_date: 2020,
-      amount: 15,
       records: [],
     };
     this.handleChange = this.handleChange.bind(this);
@@ -40,8 +40,29 @@ export default class SearchForm extends Component {
     });
   };
 
+  populateOperator() {
+    if(this.state.name_of_field === "SE Practice") {
+      this.setState({operators:[
+        {
+          label: "Is Equal To",
+          value: "Is Equal To"
+        },
+        {
+          label: "Is Not Equal To",
+          value: "Is Not Equal To"
+        }]})
+      console.log("working");
+    }
+  }
+
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  handleFieldNameChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value }, () =>
+      this.populateOperator(),
+    );
   }
 
   myCallback = (datafromDateSlider) => {
@@ -56,7 +77,6 @@ export default class SearchForm extends Component {
   }
 
   render() {
-    console.log(this.state.records);
     return (
       <div style={{ padding: 150 }}>
         <Grid container direction="column" spacing={3}>
@@ -71,9 +91,10 @@ export default class SearchForm extends Component {
                 />
                 <SearchQuery
                   se_practice={this.state.se_practice}
-                  operator={this.state.operator}
+                  operators={this.state.operators}
                   name_of_field={this.state.name_of_field}
                   handleChange={this.handleChange}
+                  handleFieldNameChange={this.handleFieldNameChange}
                 />
                 <Grid item xs={1} sm={2} md={5} />
                 <Button type="submit" variant="contained" color="primary">
