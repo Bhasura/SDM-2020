@@ -7,6 +7,7 @@ install:
   - npm ci
 
 script:
+  - cd client && npm run test
   - npm run build
 
 deploy:
