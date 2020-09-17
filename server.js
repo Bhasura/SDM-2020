@@ -24,8 +24,8 @@ mongoose
 
 var Users = require("./routes/Users");
 var Records = require("./routes/Records");
-//var RecordAttributes = require("./routes/RecordAttributes");
-app.use("/", Users, Records);
+var RecordAttributes = require("./routes/RecordAttributes");
+app.use("/", Users, Records, RecordAttributes);
 
 if (
   process.env.NODE_ENV === "production" ||

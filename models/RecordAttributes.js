@@ -4,6 +4,9 @@ const Schema = mongoose.Schema;
 const RecordAttributesSchema = new Schema({
   se_practice: {
     type: []
+  },
+  tdd_claims: {
+    type: []
   }
 });
 

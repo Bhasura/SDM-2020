@@ -10,8 +10,8 @@ import {
   IconButton,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -25,6 +25,8 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchQuery = (props) => {
   const classes = useStyles();
+  console.log(props.operators);
+  console.log(props.values);
 
   return (
     <Paper elevation={7} variant="outlined">
@@ -40,13 +42,13 @@ const SearchQuery = (props) => {
             <Select
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
-              value={props.name_of_field || ''}
+              value={props.name_of_field || ""}
               onClick={props.handleFieldNameChange}
               label="Name of Field"
               name="name_of_field"
             >
               <MenuItem value={"SE Practice"}>SE Practice</MenuItem>
-              <MenuItem value={"Title"}>Title</MenuItem>
+              <MenuItem value={"TDD Claims"}>TDD Claims</MenuItem>
             </Select>
           </FormControl>
 
@@ -64,7 +66,9 @@ const SearchQuery = (props) => {
             >
               {props.operators.map((p, index) => {
                 return (
-                     <MenuItem key={index} value={p.value}>{p.label}</MenuItem>
+                  <MenuItem key={index} value={p.value}>
+                    {p.label}
+                  </MenuItem>
                 );
               })}
             </Select>
@@ -77,13 +81,18 @@ const SearchQuery = (props) => {
             <Select
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
-              value={props.se_practice || ''}
+              value={props.selected_value}
               onChange={props.handleChange}
-              label="SE Practice"
-              name="se_practice"
+              label="Value"
+              name="selected_value"
             >
-              <MenuItem value={"TDD"}>TDD</MenuItem>
-              <MenuItem value={"Agile"}>Agile</MenuItem>
+              {props.values.map((p, index) => {
+                return (
+                  <MenuItem key={index} value={p.value}>
+                    {p.label}
+                  </MenuItem>
+                );
+              })}
             </Select>
           </FormControl>
 
@@ -94,7 +103,6 @@ const SearchQuery = (props) => {
           <IconButton aria-label="remove">
             <RemoveCircleOutlineIcon />
           </IconButton>
-
         </Grid>
       </Grid>
     </Paper>
