@@ -25,8 +25,6 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchQuery = (props) => {
   const classes = useStyles();
-  console.log(props.operators);
-  console.log(props.values);
 
   return (
     <Paper elevation={7} variant="outlined">

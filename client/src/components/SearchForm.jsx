@@ -10,15 +10,15 @@ export default class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
-      se_practice: '',
+      se_practice: "",
       operators: [],
       values: [],
-      selected_value: '',
-      selected_operator: '',
-      name_of_field: '',
+      selected_value: "",
+      selected_operator: "",
+      name_of_field: "",
       from_date: 2015,
       to_date: 2020,
-      claims: '',
+      claims: "",
       records: [],
     };
     this.handleChange = this.handleChange.bind(this);
@@ -35,7 +35,7 @@ export default class SearchForm extends Component {
             from_date: this.state.from_date,
             to_date: this.state.to_date,
             claims: this.state.selected_value,
-            selected_operator: this.state.selected_operator
+            selected_operator: this.state.selected_operator,
           },
         })
         .then((res) => {
@@ -46,49 +46,60 @@ export default class SearchForm extends Component {
   };
 
   populateValues() {
-    console.log(this.state.name_of_field);
-    if(this.state.name_of_field === "SE Practice") {
-      this.setState({values:[
-        {
-          label: "TDD",
-          value: "TDD"
-        },
-        {
-          label: "Agile",
-          value: "Agile"
-        }]})
+    if (this.state.name_of_field === "SE Practice") {
+      this.setState({
+        values: [
+          {
+            label: "TDD",
+            value: "TDD",
+          },
+          {
+            label: "Agile",
+            value: "Agile",
+          },
+        ],
+      });
     }
-    if(this.state.name_of_field === "TDD Claims") {
-/*       axios
+    if (this.state.name_of_field === "TDD Claims") {
+      /*       axios
       .get("/record_attributes/tdd_claims")
       .then((res) => {
         this.setState({ values: res.data });
       })
       .catch((err) => console.log(err)); */
-      this.setState({values:[
-        {
-          label: "improves code quality",
-          value: "improves code quality"
-        },
-        {
-          label: "improves team confidence",
-          value: "improves team confidence"
-        }]})
+      this.setState({
+        values: [
+          {
+            label: "improves code quality",
+            value: "improves code quality",
+          },
+          {
+            label: "improves team confidence",
+            value: "improves team confidence",
+          },
+        ],
+      });
     }
   }
 
   populateOperator() {
-    if(this.state.name_of_field === "SE Practice" || this.state.name_of_field === "TDD Claims") {
-      this.setState({operators:[
-        {
-          label: "Is Equal To",
-          value: "Is Equal To"
-        },
-        {
-          label: "Is Not Equal To",
-          value: "Is Not Equal To"
-        }]})
-        this.populateValues()
+    if (
+      this.state.name_of_field === "SE Practice" ||
+      this.state.name_of_field === "TDD Claims"
+    ) {
+      this.setState({
+        operators: [
+          {
+            label: "Is Equal To",
+            value: "Is Equal To",
+          },
+          {
+            label: "Is Not Equal To",
+            value: "Is Not Equal To",
+          },
+        ],
+      });
+      this.populateValues();
     }
   }
 
@@ -97,23 +108,30 @@ export default class SearchForm extends Component {
   }
 
   handleFieldNameChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value }, () =>
-      this.populateOperator(),
+    this.setState(
+      { [e.target.name]: e.target.value },
+      () => this.populateOperator()
       //this.populateValues(),
-      console.log("values done"),
     );
-  }
+  };
 
   myCallback = (datafromDateSlider) => {
-    this.setState({from_date:datafromDateSlider[0]});
-    this.setState({to_date:datafromDateSlider[1]});
-  }
+    this.setState({ from_date: datafromDateSlider[0] });
+    this.setState({ to_date: datafromDateSlider[1] });
+  };
 
   onCancel = (e) => {
-    this.setState({se_practice:""});
-    this.setState({from_date:2015});
-    this.setState({to_date:2020});
-  }
+    this.setState({
+      values: [
+        {
+          label: "",
+          value: "",
+        },
+      ],
+    });
+    this.setState({ from_date: 2015 });
+    this.setState({ to_date: 2020 });
+  };
 
   render() {
     return (
@@ -142,7 +160,14 @@ export default class SearchForm extends Component {
                 <Button type="submit" variant="contained" color="primary">
                   Search
                 </Button>
-                <Button type="cancel" variant="contained" color="primary" onClick={this.onCancel}>
+                <Button
+                  data-testid="testID1"
+                  type="cancel"
+                  variant="contained"
+                  color="primary"
+                  onClick={this.onCancel}
+                  className="cancel_button"
+                >
                   Cancel
                 </Button>
               </form>
