@@ -92,11 +92,7 @@ export default class SearchForm extends Component {
           {
             label: "Is Equal To",
             value: "Is Equal To",
-          },
-          {
-            label: "Is Not Equal To",
-            value: "Is Not Equal To",
-          },
+          }
         ],
       });
       this.populateValues();
@@ -116,8 +112,11 @@ export default class SearchForm extends Component {
   };
 
   myCallback = (datafromDateSlider) => {
-    this.setState({ from_date: datafromDateSlider[0] });
+    this.setState({ from_date: datafromDateSlider[0] }, () => {
+      console.log(datafromDateSlider[0])
+    });
     this.setState({ to_date: datafromDateSlider[1] });
+
   };
 
   onCancel = (e) => {

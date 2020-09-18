@@ -18,10 +18,11 @@ function valuetext(value) {
 export default function RangeSlider(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState([props.from_date, props.to_date]);
-  const dates = value;
+  let dates = value;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    dates = newValue;
     props.callbackFromParent(dates);
   };
 

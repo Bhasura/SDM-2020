@@ -22,5 +22,5 @@ it("cancelling search query will reset value dropdown with empty string", () => 
         value: "",
       },
     ]);
-  }, 5000);
+  }, 20000);
 });
