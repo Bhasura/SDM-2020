@@ -1,11 +1,23 @@
 import React from "react";
 import { Component } from "react";
-import { Grid, Button } from "@material-ui/core";
+import { Grid, Button, withStyles } from "@material-ui/core";
 import axios from "axios";
 import RecordResults from "../components/RecordResults";
 import SearchQuery from "./SearchQuery";
 import DateSlider from "./DateSlider";
 
+const SearchButton = withStyles({
+  root: {
+    backgroundColor: "#2D6A4F",
+    color: "white",
+  },
+})(Button);
+const CancelButton = withStyles({
+  root: {
+    backgroundColor: "#40916C",
+    color: "white",
+  },
+})(Button);
 export default class SearchForm extends Component {
   constructor() {
     super();
@@ -92,7 +104,7 @@ export default class SearchForm extends Component {
           {
             label: "Is Equal To",
             value: "Is Equal To",
-          }
+          },
         ],
       });
       this.populateValues();
@@ -113,19 +125,16 @@ export default class SearchForm extends Component {
 
   myCallback = (datafromDateSlider) => {
     this.setState({ from_date: datafromDateSlider[0] }, () => {
-      console.log(datafromDateSlider[0])
+      console.log(datafromDateSlider[0]);
     });
     this.setState({ to_date: datafromDateSlider[1] });
-
   };
 
   onCancel = (e) => {
-    this.setState({name_of_field:''});
-    this.setState({operators:[]})
-    this.setState({selected_operator: ''});
-    this.setState({selected_value: ''});
-    this.setState({from_date:2015});
-    this.setState({to_date:2020});
+    this.setState({ name_of_field: "" });
+    this.setState({ operators: [] });
+    this.setState({ selected_operator: "" });
+    this.setState({ selected_value: "" });
     this.setState({
       values: [
         {
@@ -141,6 +150,7 @@ export default class SearchForm extends Component {
       <div style={{ padding: 100 }}>
         <Grid container direction="column" spacing={3}>
           <Grid item container>
+            <Grid item xs={1} sm={2} md={1} />
             <Grid item xs={1} sm={2} />
             <Grid item xs={12} sm={8}>
               <form noValidate onSubmit={this.onSubmit}>
@@ -159,19 +169,18 @@ export default class SearchForm extends Component {
                   handleFieldNameChange={this.handleFieldNameChange}
                 />
                 <Grid item xs={1} sm={2} md={5} />
-                <Button type="submit" variant="contained" color="primary">
+                <SearchButton type="submit" variant="contained">
                   Search
-                </Button>
-                <Button
+                </SearchButton>
+                <CancelButton
                   data-testid="testID1"
                   type="cancel"
                   variant="contained"
-                  color="primary"
                   onClick={this.onCancel}
                   className="cancel_button"
                 >
                   Cancel
-                </Button>
+                </CancelButton>
               </form>
             </Grid>
             <Grid item xs={1} sm={2} />

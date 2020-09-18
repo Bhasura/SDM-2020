@@ -7,11 +7,11 @@ import {
   Grid,
   FormControl,
   InputLabel,
-  IconButton,
+  //IconButton,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
+// import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+// import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -21,28 +21,39 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
-  IfTypography:{
+  IfTypography: {
     marginTop: theme.spacing(2),
     paddingLeft: theme.spacing(6),
     fontSize: 25,
+    color: "#52B788",
   },
-  PlusMinusButton:{
+  GreenSeer: {
+    color: "#52B788",
+  },
+  PlusMinusButton: {
     blockSize: 50,
-  }
+  },
+  PaperBack: {
+    backgroundColor: "#D8F3DC",
+    width: 600,
+  },
 }));
 
 const SearchQuery = (props) => {
   const classes = useStyles();
 
   return (
-    <Paper elevation={7} variant="outlined">
+    <Paper className={classes.PaperBack} elevation={7} variant="outlined">
       <Grid container direction="row">
         <Grid item xs={1} sm={2}>
           <Typography className={classes.IfTypography}>IF</Typography>
         </Grid>
         <Grid item>
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label">
+            <InputLabel
+              className={classes.GreenSeer}
+              id="demo-simple-select-outlined-label"
+            >
               Name of Field
             </InputLabel>
             <Select
@@ -59,7 +70,10 @@ const SearchQuery = (props) => {
           </FormControl>
 
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label">
+            <InputLabel
+              className={classes.GreenSeer}
+              id="demo-simple-select-outlined-label"
+            >
               Operator
             </InputLabel>
             <Select
@@ -81,7 +95,10 @@ const SearchQuery = (props) => {
           </FormControl>
 
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label">
+            <InputLabel
+              className={classes.GreenSeer}
+              id="demo-simple-select-outlined-label"
+            >
               Value
             </InputLabel>
             <Select
@@ -102,13 +119,13 @@ const SearchQuery = (props) => {
             </Select>
           </FormControl>
 
-          <IconButton className={classes.PlusMinusButton} aria-label="add">
+          {/* <IconButton className={classes.PlusMinusButton} aria-label="add">
             <AddCircleOutlineIcon />
           </IconButton>
 
           <IconButton className={classes.PlusMinusButton} aria-label="remove">
             <RemoveCircleOutlineIcon />
-          </IconButton>
+          </IconButton> */}
         </Grid>
       </Grid>
     </Paper>
