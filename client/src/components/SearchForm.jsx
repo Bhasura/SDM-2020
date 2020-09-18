@@ -83,10 +83,6 @@ export default class SearchForm extends Component {
         {
           label: "Is Equal To",
           value: "Is Equal To"
-        },
-        {
-          label: "Is Not Equal To",
-          value: "Is Not Equal To"
         }]})
         this.populateValues()
     }
@@ -110,14 +106,18 @@ export default class SearchForm extends Component {
   }
 
   onCancel = (e) => {
-    this.setState({se_practice:""});
+    this.setState({name_of_field:''});
+    this.setState({operators:[]})
+    this.setState({values:[]});
+    this.setState({selected_operator: ''});
+    this.setState({selected_value: ''});
     this.setState({from_date:2015});
     this.setState({to_date:2020});
   }
 
   render() {
     return (
-      <div style={{ padding: 150 }}>
+      <div style={{ padding: 100 }}>
         <Grid container direction="column" spacing={3}>
           <Grid item container>
             <Grid item xs={1} sm={2} />
@@ -129,7 +129,6 @@ export default class SearchForm extends Component {
                   to_date={this.state.to_date}
                 />
                 <SearchQuery
-                  //se_practice={this.state.se_practice}
                   operators={this.state.operators}
                   values={this.state.values}
                   selected_value={this.state.selected_value}

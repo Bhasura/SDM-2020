@@ -21,6 +21,14 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  IfTypography:{
+    marginTop: theme.spacing(2),
+    paddingLeft: theme.spacing(6),
+    fontSize: 25,
+  },
+  PlusMinusButton:{
+    blockSize: 50,
+  }
 }));
 
 const SearchQuery = (props) => {
@@ -32,7 +40,7 @@ const SearchQuery = (props) => {
     <Paper elevation={7} variant="outlined">
       <Grid container direction="row">
         <Grid item xs={1} sm={2}>
-          <Typography>IF</Typography>
+          <Typography className={classes.IfTypography}>IF</Typography>
         </Grid>
         <Grid item>
           <FormControl className={classes.formControl}>
@@ -96,11 +104,11 @@ const SearchQuery = (props) => {
             </Select>
           </FormControl>
 
-          <IconButton aria-label="add">
+          <IconButton className={classes.PlusMinusButton} aria-label="add">
             <AddCircleOutlineIcon />
           </IconButton>
 
-          <IconButton aria-label="remove">
+          <IconButton className={classes.PlusMinusButton} aria-label="remove">
             <RemoveCircleOutlineIcon />
           </IconButton>
         </Grid>
