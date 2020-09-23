@@ -31,7 +31,8 @@ export default class SearchForm extends Component {
       from_date: 2015,
       to_date: 2020,
       claims: "",
-      records: [],
+      records: null,
+      cancelButtonPressed: false
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -47,11 +48,13 @@ export default class SearchForm extends Component {
             from_date: this.state.from_date,
             to_date: this.state.to_date,
             claims: this.state.selected_value,
-            selected_operator: this.state.selected_operator,
+            selected_operator: this.state.selected_operator
           },
         })
         .then((res) => {
-          this.setState({ records: res.data });
+          this.setState({ 
+            records: res.data
+          });
         })
         .catch((err) => console.log(err));
     });
@@ -131,18 +134,23 @@ export default class SearchForm extends Component {
   };
 
   onCancel = (e) => {
-    this.setState({ name_of_field: "" });
-    this.setState({ operators: [] });
-    this.setState({ selected_operator: "" });
-    this.setState({ selected_value: "" });
+    this.setState({ cancelButtonPressed: true}, () => {
+      console.log(this.state.cancelButtonPressed);
+    });
     this.setState({
+      name_of_field: "",
+      operators: [],
+      records: null,
+      selected_operator: "",
+      selected_value: "",
+      cancelButtonPressed: true,
       values: [
         {
           label: "",
           value: "",
         },
-      ],
-    });
+      ]
+    }); 
   };
 
   render() {
@@ -187,9 +195,10 @@ export default class SearchForm extends Component {
           </Grid>
         </Grid>
 
-        {this.state.records.length > 0 ? (
+        {!this.state.cancelButtonPressed ? (
           <RecordResults records={this.state.records} />
         ) : null}
+      
       </div>
     );
   }

@@ -15,6 +15,7 @@ class RecordResults extends Component {
   render() {
     let recordListContent;
     const { records } = this.props;
+    console.log(records);
     if (records) {
       recordListContent = (
         <Grid container direction="column" spacing={3}>
