@@ -34,17 +34,29 @@ class RecordResults extends Component {
               </TableHead>
               <TableBody>
                 {records.map((p, index) => {
+
+                  var url = 'http://doi.org/' + p.doi;
+                  var claims = "";
+                  for (var i = 0; i < p.claims.length; i++) {
+                    if (i === p.claims.length - 1) {
+                      claims += p.claims[i];
+                    }
+                    else {
+                      claims += p.claims[i] + ", ";
+                    }
+                  }
+
                   return (
                     <TableRow key={index}>
-                      <TableCell align="right">{p.title}</TableCell>
-                      <TableCell align="right">{p.author}</TableCell>
-                      <TableCell align="right">{p.year}</TableCell>
-                      <TableCell align="right">{p.type}</TableCell>
-                      <TableCell align="right">{p.journal}</TableCell>
-                      <TableCell align="right">{p.se_practice}</TableCell>
-                      <TableCell align="right">{p.claims}</TableCell>
-                      <TableCell align="right">{p.doi}</TableCell>
-                    </TableRow>
+                  <TableCell align="right">{p.title}</TableCell>
+                  <TableCell align="right">{p.author}</TableCell>
+                  <TableCell align="right">{p.year}</TableCell>
+                  <TableCell align="right">{p.type}</TableCell>
+                  <TableCell align="right">{p.journal}</TableCell>
+                  <TableCell align="right">{p.se_practice}</TableCell>
+                  <TableCell align="right">{claims}</TableCell>
+                  <TableCell align="right"><a href={url} target="_blank" rel="noopener noreferrer">{p.doi}</a></TableCell>
+                </TableRow>
                   );
                 })}
               </TableBody>
