@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Slider, Paper } from "@material-ui/core";
+import { Typography, Slider, Paper, Grid } from "@material-ui/core";
+import DateRadioButtons from "./DateRadioButtons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,19 +32,23 @@ export default function RangeSlider(props) {
 
   return (
     <Paper elevation={7} variant="outlined" className={classes.root}>
-      <Typography className={classes.GreenSeer} id="range-slider" gutterBottom>
-        Select Date Range
-      </Typography>
-      <Slider
-        className={classes.GreenSeer}
-        value={value}
-        onChange={handleChange}
-        valueLabelDisplay="auto"
-        aria-labelledby="range-slider"
-        getAriaValueText={valuetext}
-        min={1990}
-        max={2020}
-      />
+      <Grid container direction="row">
+        <Typography className={classes.GreenSeer} id="range-slider" gutterBottom>
+          Select Date Range
+        </Typography>
+        <Slider
+          className={classes.GreenSeer}
+          id = "sliderTest"
+          value={value}
+          onChange={handleChange}
+          valueLabelDisplay="auto"
+          aria-labelledby="range-slider"
+          getAriaValueText={valuetext}
+          min={1990}
+          max={2020}
+        />
+        <DateRadioButtons from_date={value[0]}/>
+      </Grid>
     </Paper>
   );
 }

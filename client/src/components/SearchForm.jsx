@@ -162,11 +162,6 @@ export default class SearchForm extends Component {
             <Grid item xs={1} sm={2} />
             <Grid item xs={12} sm={8}>
               <form noValidate onSubmit={this.onSubmit}>
-                <DateSlider
-                  callbackFromParent={this.myCallback}
-                  from_date={this.state.from_date}
-                  to_date={this.state.to_date}
-                />
                 <SearchQuery
                   operators={this.state.operators}
                   values={this.state.values}
@@ -175,6 +170,11 @@ export default class SearchForm extends Component {
                   name_of_field={this.state.name_of_field}
                   handleChange={this.handleChange}
                   handleFieldNameChange={this.handleFieldNameChange}
+                />
+                <DateSlider
+                  callbackFromParent={this.myCallback}
+                  from_date={this.state.from_date}
+                  to_date={this.state.to_date}
                 />
                 <Grid item xs={1} sm={2} md={5} />
                 <SearchButton type="submit" variant="contained">
