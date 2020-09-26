@@ -33,12 +33,16 @@ export default function RangeSlider(props) {
   return (
     <Paper elevation={7} variant="outlined" className={classes.root}>
       <Grid container direction="row">
-        <Typography className={classes.GreenSeer} id="range-slider" gutterBottom>
+        <Typography
+          className={classes.GreenSeer}
+          id="range-slider"
+          gutterBottom
+        >
           Select Date Range
         </Typography>
         <Slider
           className={classes.GreenSeer}
-          id = "sliderTest"
+          id="sliderTest"
           value={value}
           onChange={handleChange}
           valueLabelDisplay="auto"
@@ -47,7 +51,6 @@ export default function RangeSlider(props) {
           min={1990}
           max={2020}
         />
-        <DateRadioButtons from_date={value[0]}/>
       </Grid>
     </Paper>
   );

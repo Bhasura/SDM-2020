@@ -5,6 +5,7 @@ import axios from "axios";
 import RecordResults from "../components/RecordResults";
 import SearchQuery from "./SearchQuery";
 import DateSlider from "./DateSlider";
+import DateRadioButtons from "./DateRadioButtons";
 
 const SearchButton = withStyles({
   root: {
@@ -32,7 +33,7 @@ export default class SearchForm extends Component {
       to_date: 2020,
       claims: "",
       records: null,
-      cancelButtonPressed: false
+      cancelButtonPressed: false,
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -48,12 +49,12 @@ export default class SearchForm extends Component {
             from_date: this.state.from_date,
             to_date: this.state.to_date,
             claims: this.state.selected_value,
-            selected_operator: this.state.selected_operator
+            selected_operator: this.state.selected_operator,
           },
         })
         .then((res) => {
-          this.setState({ 
-            records: res.data
+          this.setState({
+            records: res.data,
           });
         })
         .catch((err) => console.log(err));
@@ -134,7 +135,7 @@ export default class SearchForm extends Component {
   };
 
   onCancel = (e) => {
-    this.setState({ cancelButtonPressed: true}, () => {
+    this.setState({ cancelButtonPressed: true }, () => {
       console.log(this.state.cancelButtonPressed);
     });
     this.setState({
@@ -149,8 +150,8 @@ export default class SearchForm extends Component {
           label: "",
           value: "",
         },
-      ]
-    }); 
+      ],
+    });
   };
 
   render() {
@@ -189,6 +190,7 @@ export default class SearchForm extends Component {
                 >
                   Cancel
                 </CancelButton>
+                <DateRadioButtons />
               </form>
             </Grid>
             <Grid item xs={1} sm={2} />
@@ -198,7 +200,6 @@ export default class SearchForm extends Component {
         {!this.state.cancelButtonPressed ? (
           <RecordResults records={this.state.records} />
         ) : null}
-      
       </div>
     );
   }
