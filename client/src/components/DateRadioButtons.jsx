@@ -9,7 +9,18 @@ export default function RadioButtonsGroup() {
   const [value, setValue] = React.useState("5");
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    let newValue = 0;
+    
+    if(event.target.value === "5") {
+      newValue = 2015;
+    }
+    if(event.target.value === "10") {
+      newValue = 2010;
+    }
+    if(event.target.value === "15") {
+      newValue = 2005;
+    }
+    setValue(newValue);
   };
 
   return (
@@ -24,6 +35,7 @@ export default function RadioButtonsGroup() {
         >
           <FormControlLabel
             value="5"
+            id="last5Years"
             control={<Radio />}
             label="Last 5 years"
           />

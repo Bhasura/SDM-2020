@@ -5,7 +5,7 @@ import axios from "axios";
 import RecordResults from "../components/RecordResults";
 import SearchQuery from "./SearchQuery";
 import DateSlider from "./DateSlider";
-import DateRadioButtons from "./DateRadioButtons";
+//import DateRadioButtons from "./DateRadioButtons";
 
 const SearchButton = withStyles({
   root: {
@@ -190,7 +190,6 @@ export default class SearchForm extends Component {
                 >
                   Cancel
                 </CancelButton>
-                <DateRadioButtons />
               </form>
             </Grid>
             <Grid item xs={1} sm={2} />

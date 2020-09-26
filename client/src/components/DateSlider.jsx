@@ -5,14 +5,14 @@ import DateRadioButtons from "./DateRadioButtons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 200,
-    height: 70,
-    padding: 10,
     backgroundColor: "#D8F3DC",
   },
   GreenSeer: {
     color: "#52B788",
   },
+  RadioGrid:{
+    paddingLeft: 100
+  }
 }));
 
 function valuetext(value) {
@@ -33,24 +33,29 @@ export default function RangeSlider(props) {
   return (
     <Paper elevation={7} variant="outlined" className={classes.root}>
       <Grid container direction="row">
-        <Typography
-          className={classes.GreenSeer}
-          id="range-slider"
-          gutterBottom
-        >
-          Select Date Range
-        </Typography>
-        <Slider
-          className={classes.GreenSeer}
-          id="sliderTest"
-          value={value}
-          onChange={handleChange}
-          valueLabelDisplay="auto"
-          aria-labelledby="range-slider"
-          getAriaValueText={valuetext}
-          min={1990}
-          max={2020}
-        />
+        <Grid item>
+          <Typography
+            className={classes.GreenSeer}
+            id="range-slider"
+            gutterBottom
+          >
+            Select Date Range
+          </Typography>
+          <Slider
+            className={classes.GreenSeer}
+            id="sliderTest"
+            value={value}
+            onChange={handleChange}
+            valueLabelDisplay="auto"
+            aria-labelledby="range-slider"
+            getAriaValueText={valuetext}
+            min={1990}
+            max={2020}
+          />
+        </Grid>
+        <Grid item className = {classes.RadioGrid}>
+          <DateRadioButtons />
+        </Grid>
       </Grid>
     </Paper>
   );
