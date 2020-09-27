@@ -74,12 +74,25 @@ describe("handleChange", () => {
 });
 
 it("should get records on submit", () => {
-  axios.get.mockResolvedValue(resp);
-
+  axios.get.mockImplementationOnce(() => Promise.resolve(resp));
   wrapper
     .instance()
     .fillRecords()
     .then((resp) => {
       expect(wrapper.state("records")).toEqual(resp.data);
     });
+});
+
+describe("onCancel", () => {
+  it("should clear records on cancel", () => {
+    wrapper.setState({ records: resp.data });
+    wrapper.instance().clearRecords();
+    expect(wrapper.state("records")).toEqual(null);
+  });
+
+  it("should set cancelButtonPressed to true", () => {
+    wrapper.setState({ records: resp.data });
+    wrapper.instance().cancelButtonPress();
+    expect(wrapper.state("cancelButtonPressed")).toEqual(true);
+  });
 });

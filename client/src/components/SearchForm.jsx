@@ -137,7 +137,18 @@ export default class SearchForm extends Component {
     this.setState({ to_date: datafromDateSlider[1] });
   };
 
-  onCancel = (e) => {};
+  onCancel = (e) => {
+    this.clearRecords();
+    this.cancelButtonPress();
+  };
+
+  clearRecords = () => {
+    return this.setState({ records: null });
+  };
+
+  cancelButtonPress = () => {
+    return this.setState({ cancelButtonPressed: true });
+  };
 
   render() {
     return (
