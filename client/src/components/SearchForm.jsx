@@ -41,25 +41,27 @@ export default class SearchForm extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    this.handleChange(e);
+    this.fillRecords();
+  };
 
-    this.setState({ [e.target.name]: e.target.value }, () => {
-      axios
-        .get("/records", {
-          params: {
-            se_practice: this.state.selected_value,
-            from_date: this.state.from_date,
-            to_date: this.state.to_date,
-            claims: this.state.selected_value,
-            selected_operator: this.state.selected_operator,
-          },
-        })
-        .then((res) => {
-          this.setState({
-            records: res.data,
-          });
-        })
-        .catch((err) => console.log(err));
-    });
+  fillRecords = () => {
+    return axios
+      .get("/records", {
+        params: {
+          se_practice: this.state.selected_value,
+          from_date: this.state.from_date,
+          to_date: this.state.to_date,
+          claims: this.state.selected_value,
+          selected_operator: this.state.selected_operator,
+        },
+      })
+      .then((res) => {
+        this.setState({
+          records: res.data,
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
   populateValues() {
@@ -135,25 +137,7 @@ export default class SearchForm extends Component {
     this.setState({ to_date: datafromDateSlider[1] });
   };
 
-  onCancel = (e) => {
-    this.setState({ cancelButtonPressed: true }, () => {
-      console.log(this.state.cancelButtonPressed);
-    });
-    this.setState({
-      name_of_field: "",
-      operators: [],
-      records: null,
-      selected_operator: "",
-      selected_value: "",
-      cancelButtonPressed: true,
-      values: [
-        {
-          label: "",
-          value: "",
-        },
-      ],
-    });
-  };
+  onCancel = (e) => {};
 
   render() {
     return (
