@@ -19,6 +19,7 @@ const CancelButton = withStyles({
     color: "white",
   },
 })(Button);
+
 export default class SearchForm extends Component {
   constructor() {
     super();
