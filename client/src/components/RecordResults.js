@@ -23,40 +23,47 @@ class RecordResults extends Component {
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Title</TableCell>
-                  <TableCell align="right">Author</TableCell>
-                  <TableCell align="right">Year</TableCell>
-                  <TableCell align="right">Type</TableCell>
-                  <TableCell align="right">Journal</TableCell>
-                  <TableCell align="right">SE Practice</TableCell>
-                  <TableCell align="right">Claims</TableCell>
-                  <TableCell align="right">DOI</TableCell>
+                  <TableCell align="left">Title</TableCell>
+                  <TableCell align="left">Author</TableCell>
+                  <TableCell align="left">Year</TableCell>
+                  <TableCell align="left">Type</TableCell>
+                  <TableCell align="left">Journal</TableCell>
+                  <TableCell align="left">SE Practice</TableCell>
+                  <TableCell align="left">Claims</TableCell>
+                  <TableCell align="left">Strength of Evidence</TableCell>
+                  <TableCell align="left">DOI</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {records.map((p, index) => {
 
                   var url = 'http://doi.org/' + p.doi;
+                  
                   var claims = "";
+                  var strength = "";
+
                   for (var i = 0; i < p.claims.length; i++) {
                     if (i === p.claims.length - 1) {
                       claims += p.claims[i];
+                      strength += p.strength_of_evidence[i];
                     }
                     else {
                       claims += p.claims[i] + ", ";
+                      strength += p.strength_of_evidence[i] + ", ";
                     }
                   }
 
                   return (
                     <TableRow key={index}>
-                  <TableCell align="right">{p.title}</TableCell>
-                  <TableCell align="right">{p.author}</TableCell>
-                  <TableCell align="right">{p.year}</TableCell>
-                  <TableCell align="right">{p.type}</TableCell>
-                  <TableCell align="right">{p.journal}</TableCell>
-                  <TableCell align="right">{p.se_practice}</TableCell>
-                  <TableCell align="right">{claims}</TableCell>
-                  <TableCell align="right"><a href={url} target="_blank" rel="noopener noreferrer">{p.doi}</a></TableCell>
+                  <TableCell align="left">{p.title}</TableCell>
+                  <TableCell align="left">{p.author}</TableCell>
+                  <TableCell align="left">{p.year}</TableCell>
+                  <TableCell align="left">{p.type}</TableCell>
+                  <TableCell align="left">{p.journal}</TableCell>
+                  <TableCell align="left">{p.se_practice}</TableCell>
+                  <TableCell align="left">{claims}</TableCell>
+                  <TableCell align="left">{strength}</TableCell>
+                  <TableCell align="left"><a href={url} target="_blank" rel="noopener noreferrer">{p.doi}</a></TableCell>
                 </TableRow>
                   );
                 })}
