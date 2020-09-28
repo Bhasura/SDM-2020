@@ -1,62 +1,94 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Slider, Paper, Grid } from "@material-ui/core";
+import React, {Component} from "react";
+import { Typography, Slider, Paper, Grid, withStyles } from "@material-ui/core";
 import DateRadioButtons from "./DateRadioButtons";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: "#D8F3DC",
-  },
-  GreenSeer: {
+const Title = withStyles({
+  root : {
     color: "#52B788",
   },
-  RadioGrid:{
+})(Typography)
+
+const CustomPaper = withStyles({
+  root : {
+    backgroundColor: "#D8F3DC",
+  },
+})(Paper)
+
+const CustomSlider = withStyles({
+  root : {
+    color: "#52B788",
+  },
+})(Slider)
+
+const RadioGrid = withStyles({
+  root : {
     paddingLeft: 100
+  },
+})(Grid)
+
+export default class RangeSlider extends Component {
+  constructor() {
+    super();
+    this.state = {
+      value : [2015,2020]
+    };
   }
-}));
 
-function valuetext(value) {
-  return `${value}`;
-}
+  valuetext = (value) =>{
+    return `${value}`;
+  }
 
-export default function RangeSlider(props) {
-  const classes = useStyles();
-  const [value, setValue] = React.useState([props.from_date, props.to_date]);
-  let dates = value;
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    dates = newValue;
-    props.callbackFromParent(dates);
+  handleChange = (event, newValue) => {
+    this.setValue(newValue);
+    
   };
 
-  return (
-    <Paper elevation={7} variant="outlined" className={classes.root}>
-      <Grid container direction="row">
-        <Grid item>
-          <Typography
-            className={classes.GreenSeer}
-            id="range-slider"
-            gutterBottom
-          >
-            Select Date Range
-          </Typography>
-          <Slider
-            className={classes.GreenSeer}
-            id="sliderTest"
-            value={value}
-            onChange={handleChange}
-            valueLabelDisplay="auto"
-            aria-labelledby="range-slider"
-            getAriaValueText={valuetext}
-            min={1990}
-            max={2020}
-          />
+  setValue = (newValue) => {
+    this.setState({value: newValue}, () => {
+      this.props.callbackFromParent(this.state.value);
+    });
+  }
+
+  dateSliderCallback = (dataFromRadioButtons) => {
+    let newValue = [];
+    if(dataFromRadioButtons === "5") {
+      newValue = [2015, 2020];
+    } else if(dataFromRadioButtons === "10") {
+      newValue = [2010, 2020];
+    } else {
+      newValue = [2005, 2020];
+    }; 
+    this.setValue(newValue)
+    this.props.callbackFromParent(this.state.value);
+  }
+
+  render() {
+    return (
+      <CustomPaper elevation={7} variant="outlined" >
+        <Grid container direction="row">
+          <Grid item>
+            <Title
+              id="range-slider"
+              gutterBottom
+            >
+              Select Date Range
+            </Title>
+            <CustomSlider
+              id="sliderTest"
+              value={this.state.value}
+              onChange={this.handleChange}
+              valueLabelDisplay="auto"
+              aria-labelledby="range-slider"
+              getAriaValueText={this.valuetext}
+              min={1990}
+              max={2020}
+            />
+          </Grid>
+          <RadioGrid item >
+            <DateRadioButtons radioButtonCallback={this.dateSliderCallback}/>
+          </RadioGrid>
         </Grid>
-        <Grid item className = {classes.RadioGrid}>
-          <DateRadioButtons />
-        </Grid>
-      </Grid>
-    </Paper>
-  );
+      </CustomPaper>
+    );
+  }
 }
