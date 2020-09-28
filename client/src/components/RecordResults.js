@@ -36,9 +36,8 @@ class RecordResults extends Component {
               </TableHead>
               <TableBody>
                 {records.map((p, index) => {
+                  var url = "http://doi.org/" + p.doi;
 
-                  var url = 'http://doi.org/' + p.doi;
-                  
                   var claims = "";
                   var strength = "";
 
@@ -46,8 +45,7 @@ class RecordResults extends Component {
                     if (i === p.claims.length - 1) {
                       claims += p.claims[i];
                       strength += p.strength_of_evidence[i];
-                    }
-                    else {
+                    } else {
                       claims += p.claims[i] + ", ";
                       strength += p.strength_of_evidence[i] + ", ";
                     }
@@ -55,16 +53,20 @@ class RecordResults extends Component {
 
                   return (
                     <TableRow key={index}>
-                  <TableCell align="left">{p.title}</TableCell>
-                  <TableCell align="left">{p.author}</TableCell>
-                  <TableCell align="left">{p.year}</TableCell>
-                  <TableCell align="left">{p.type}</TableCell>
-                  <TableCell align="left">{p.journal}</TableCell>
-                  <TableCell align="left">{p.se_practice}</TableCell>
-                  <TableCell align="left">{claims}</TableCell>
-                  <TableCell align="left">{strength}</TableCell>
-                  <TableCell align="left"><a href={url} target="_blank" rel="noopener noreferrer">{p.doi}</a></TableCell>
-                </TableRow>
+                      <TableCell align="left">{p.title}</TableCell>
+                      <TableCell align="left">{p.author}</TableCell>
+                      <TableCell align="left">{p.year}</TableCell>
+                      <TableCell align="left">{p.type}</TableCell>
+                      <TableCell align="left">{p.journal}</TableCell>
+                      <TableCell align="left">{p.se_practice}</TableCell>
+                      <TableCell align="left">{claims}</TableCell>
+                      <TableCell align="left">{strength}</TableCell>
+                      <TableCell align="left">
+                        <a href={url} target="_blank" rel="noopener noreferrer">
+                          {p.doi}
+                        </a>
+                      </TableCell>
+                    </TableRow>
                   );
                 })}
               </TableBody>

@@ -11,13 +11,3 @@ describe("DateSlider", () => {
     shallow(<DateSlider />);
   });
 });
-
-it("should update state on click", () => {
-  const setValue = jest.fn();
-  const wrapper = mount(<DateSlider onChange={setValue} />);
-  const handleClick = jest.spyOn(React, "useState");
-  handleClick.mockImplementation((value) => [value, setValue]);
-
-  wrapper.find("#sliderTest").at(0).simulate("click");
-  expect(setValue).toBeTruthy();
-});

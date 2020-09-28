@@ -64,8 +64,9 @@ describe("handleChange", () => {
       from_date: 2015,
       to_date: 2020,
       claims: "",
-      records: null,
+      records: [],
       cancelButtonPressed: false,
+      submitButtonPressed: false,
     };
     wrapper.instance().handleChange(mockEvent);
 
@@ -73,25 +74,41 @@ describe("handleChange", () => {
   });
 });
 
-it("should get records on submit", () => {
-  axios.get.mockImplementationOnce(() => Promise.resolve(resp));
-  wrapper
-    .instance()
-    .fillRecords()
-    .then((resp) => {
-      expect(wrapper.state("records")).toEqual(resp.data);
-    });
+describe("onSubmit", () => {
+  it("should get records on submit", () => {
+    axios.get.mockImplementationOnce(() => Promise.resolve(resp));
+    wrapper
+      .instance()
+      .fillRecords()
+      .then((resp) => {
+        expect(wrapper.state("records")).toEqual(resp.data);
+      });
+  });
+
+  it("should set submitButtonPressed state to true", () => {
+    wrapper.instance().submitButtonPress();
+    expect(wrapper.state("submitButtonPressed")).toEqual(true);
+  });
+
+  it("should set cancelButtonPressed state to false", () => {
+    wrapper.instance().submitButtonPress();
+    expect(wrapper.state("cancelButtonPressed")).toEqual(false);
+  });
 });
 
 describe("onCancel", () => {
   it("should clear records on cancel", () => {
     wrapper.setState({ records: resp.data });
     wrapper.instance().clearRecords();
-    expect(wrapper.state("records")).toEqual(null);
+    expect(wrapper.state("records")).toEqual([]);
   });
 
-  it("should set cancelButtonPressed to true", () => {
-    wrapper.setState({ records: resp.data });
+  it("should set submitButtonPressed state to false", () => {
+    wrapper.instance().cancelButtonPress();
+    expect(wrapper.state("submitButtonPressed")).toEqual(false);
+  });
+
+  it("should set cancelButtonPressed state to true", () => {
     wrapper.instance().cancelButtonPress();
     expect(wrapper.state("cancelButtonPressed")).toEqual(true);
   });

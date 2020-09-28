@@ -33,8 +33,9 @@ export default class SearchForm extends Component {
       from_date: 2015,
       to_date: 2020,
       claims: "",
-      records: null,
+      records: [],
       cancelButtonPressed: false,
+      submitButtonPressed: false,
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -43,6 +44,14 @@ export default class SearchForm extends Component {
     e.preventDefault();
     this.handleChange(e);
     this.fillRecords();
+    this.submitButtonPress();
+  };
+
+  submitButtonPress = () => {
+    this.setState({
+      submitButtonPressed: true,
+      cancelButtonPressed: false,
+    });
   };
 
   fillRecords = () => {
@@ -89,12 +98,12 @@ export default class SearchForm extends Component {
       this.setState({
         values: [
           {
-            label: "improves code quality",
-            value: "improves code quality",
+            label: "Improves Code Quality",
+            value: "Improves Code Quality",
           },
           {
-            label: "improves team confidence",
-            value: "improves team confidence",
+            label: "Improves Team Confidence",
+            value: "Improves Team Confidence",
           },
         ],
       });
@@ -143,11 +152,14 @@ export default class SearchForm extends Component {
   };
 
   clearRecords = () => {
-    return this.setState({ records: null });
+    return this.setState({ records: [] });
   };
 
   cancelButtonPress = () => {
-    return this.setState({ cancelButtonPressed: true });
+    this.setState({
+      cancelButtonPressed: true,
+      submitButtonPressed: false,
+    });
   };
 
   render() {
@@ -177,6 +189,8 @@ export default class SearchForm extends Component {
                 <SearchButton type="submit" variant="contained">
                   Search
                 </SearchButton>
+              </form>
+              <Grid item>
                 <CancelButton
                   data-testid="testID1"
                   type="cancel"
@@ -186,15 +200,15 @@ export default class SearchForm extends Component {
                 >
                   Cancel
                 </CancelButton>
-              </form>
+              </Grid>
             </Grid>
             <Grid item xs={1} sm={2} />
           </Grid>
         </Grid>
 
-        {!this.state.cancelButtonPressed ? (
+        {this.state.submitButtonPressed && !this.state.cancelButtonPressed && (
           <RecordResults records={this.state.records} />
-        ) : null}
+        )}
       </div>
     );
   }
