@@ -75,15 +75,15 @@ describe("handleChange", () => {
 });
 
 describe("onSubmit", () => {
-  // it("should get records on submit", () => {
-  //   axios.get.mockImplementationOnce(() => Promise.resolve(resp));
-  //   wrapper
-  //     .instance()
-  //     .fillRecords()
-  //     .then((resp) => {
-  //       expect(wrapper.state("records")).toEqual(resp.data);
-  //     });
-  // });
+  it("should get records on submit", () => {
+    axios.get.mockImplementationOnce(() => Promise.resolve(resp));
+    wrapper
+      .instance()
+      .fillRecords()
+      .then((resp) => {
+        expect(wrapper.state("records")).toEqual(resp.data);
+      });
+  });
 
   it("should set submitButtonPressed state to true", () => {
     wrapper.instance().submitButtonPress();
