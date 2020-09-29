@@ -5,7 +5,7 @@ import axios from "axios";
 import RecordResults from "../components/RecordResults";
 import SearchQuery from "./SearchQuery";
 import DateSlider from "./DateSlider";
-//import DateRadioButtons from "./DateRadioButtons";
+import EnhancedTable from "./EnhancedTable";
 
 const SearchButton = withStyles({
   root: {
@@ -187,9 +187,9 @@ export default class SearchForm extends Component {
         </Grid>
 
         {this.state.submitButtonPressed && !this.state.cancelButtonPressed && (
-          <RecordResults records={this.state.records} />
+          //<RecordResults records={this.state.records} />
+          <EnhancedTable rows={this.state.records}/>
         )}
       </div>
-    );
+    )}
   }
-}
