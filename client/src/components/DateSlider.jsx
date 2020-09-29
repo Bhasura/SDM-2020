@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Typography, Slider, Paper, Grid, withStyles } from "@material-ui/core";
+import { Typography, Slider, Paper, Grid, withStyles, Button } from "@material-ui/core";
 import DateRadioButtons from "./DateRadioButtons";
 
 const Title = withStyles({
@@ -25,6 +25,13 @@ const RadioGrid = withStyles({
     paddingLeft: 100
   },
 })(Grid)
+
+const ResetButton = withStyles({
+  root: {
+    backgroundColor: "#40916C",
+    color: "white",
+  },
+})(Button);
 
 export default class RangeSlider extends Component {
   constructor() {
@@ -87,6 +94,9 @@ export default class RangeSlider extends Component {
           <RadioGrid item >
             <DateRadioButtons radioButtonCallback={this.dateSliderCallback}/>
           </RadioGrid>
+          <Grid item >
+            <ResetButton>Reset Date</ResetButton>
+          </Grid>
         </Grid>
       </CustomPaper>
     );

@@ -62,7 +62,6 @@ export default class SearchForm extends Component {
           from_date: this.state.from_date,
           to_date: this.state.to_date,
           claims: this.state.selected_value,
-          selected_operator: this.state.selected_operator,
         },
       })
       .then((res) => {
@@ -110,22 +109,6 @@ export default class SearchForm extends Component {
     }
   }
 
-  populateOperator() {
-    if (
-      this.state.name_of_field === "SE Practice" ||
-      this.state.name_of_field === "TDD Claims"
-    ) {
-      this.setState({
-        operators: [
-          {
-            label: "Is Equal To",
-            value: "Is Equal To",
-          },
-        ],
-      });
-      this.populateValues();
-    }
-  }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -134,8 +117,7 @@ export default class SearchForm extends Component {
   handleFieldNameChange = (e) => {
     this.setState(
       { [e.target.name]: e.target.value },
-      () => this.populateOperator()
-      //this.populateValues(),
+      () => this.populateValues()
     );
   };
 
@@ -172,10 +154,8 @@ export default class SearchForm extends Component {
             <Grid item xs={12} sm={8}>
               <form noValidate onSubmit={this.onSubmit}>
                 <SearchQuery
-                  operators={this.state.operators}
                   values={this.state.values}
                   selected_value={this.state.selected_value}
-                  selected_operator={this.state.selected_operator}
                   name_of_field={this.state.name_of_field}
                   handleChange={this.handleChange}
                   handleFieldNameChange={this.handleFieldNameChange}
@@ -198,7 +178,7 @@ export default class SearchForm extends Component {
                   onClick={this.onCancel}
                   className="cancel_button"
                 >
-                  Cancel
+                  Reset
                 </CancelButton>
               </Grid>
             </Grid>

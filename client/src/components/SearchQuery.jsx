@@ -3,7 +3,6 @@ import {
   Select,
   MenuItem,
   Paper,
-  Typography,
   Grid,
   FormControl,
   InputLabel,
@@ -45,9 +44,6 @@ const SearchQuery = (props) => {
   return (
     <Paper className={classes.PaperBack} elevation={7} variant="outlined">
       <Grid container direction="row">
-        <Grid item xs={1} sm={2}>
-          <Typography className={classes.IfTypography}>IF</Typography>
-        </Grid>
         <Grid item>
           <FormControl className={classes.formControl}>
             <InputLabel
@@ -66,31 +62,6 @@ const SearchQuery = (props) => {
             >
               <MenuItem value={"SE Practice"}>SE Practice</MenuItem>
               <MenuItem value={"TDD Claims"}>TDD Claims</MenuItem>
-            </Select>
-          </FormControl>
-
-          <FormControl className={classes.formControl}>
-            <InputLabel
-              className={classes.GreenSeer}
-              id="demo-simple-select-outlined-label"
-            >
-              Operator
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={props.selected_operator}
-              onChange={props.handleChange}
-              label="Operator"
-              name="selected_operator"
-            >
-              {props.operators.map((p, index) => {
-                return (
-                  <MenuItem key={index} value={p.value}>
-                    {p.label}
-                  </MenuItem>
-                );
-              })}
             </Select>
           </FormControl>
 
