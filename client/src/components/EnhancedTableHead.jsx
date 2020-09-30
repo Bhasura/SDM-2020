@@ -17,15 +17,25 @@ const headCells = [
     id: "title",
     numeric: false,
     disablePadding: true,
-    label: "Title"
+    label: "Title",
   },
   { id: "Author", numeric: false, disablePadding: false, label: "Author" },
-  { id: "Year", numeric: true, disablePadding: false, label: "Year" },
+  { id: "Year", numeric: false, disablePadding: false, label: "Year" },
   { id: "Type", numeric: false, disablePadding: false, label: "Type" },
   { id: "Journal", numeric: false, disablePadding: false, label: "Journal" },
-  { id: "SE Practice", numeric: false, disablePadding: false, label: "SE Practice" },
+  {
+    id: "SE Practice",
+    numeric: false,
+    disablePadding: false,
+    label: "SE Practice",
+  },
   { id: "Claims", numeric: false, disablePadding: false, label: "Claims" },
-  { id: "Strength of Evidence", numeric: false, disablePadding: false, label: "Strength of Evidence" }
+  {
+    id: "Strength of Evidence",
+    numeric: false,
+    disablePadding: false,
+    label: "Strength of Evidence",
+  },
 ];
 
 export default function EnhancedTableHead(props) {
@@ -36,7 +46,6 @@ export default function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox"></TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -63,16 +72,11 @@ export default function EnhancedTableHead(props) {
   );
 }
 
-
 EnhancedTableHead.propTypes = {
   classes: PropTypes.object.isRequired,
   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
   order: PropTypes.oneOf(["asc", "desc"]).isRequired,
   orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired
+  rowCount: PropTypes.number.isRequired,
 };
-
-
-
