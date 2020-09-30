@@ -66,7 +66,7 @@ function stableSort(array, comparator) {
 export default function EnhancedTable(props) {
   const [rows, setRow] = React.useState([]);
   const classes = useStyles();
-  const [order, setOrder] = React.useState("asc");
+  const [order, setOrder] = React.useState("desc");
   const [orderBy, setOrderBy] = React.useState("year");
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
@@ -77,6 +77,8 @@ export default function EnhancedTable(props) {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
+    console.log(property);
+    console.log(order);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -113,20 +115,35 @@ export default function EnhancedTable(props) {
               {stableSort(props.rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  //const labelId = `enhanced-table-checkbox-${index}`;
+                  var url = "http://doi.org/" + row.doi;
+
+                  var claims = "";
+                  var strength = "";
+
+                  for (var i = 0; i < row.claims.length; i++) {
+                    if (i === row.claims.length - 1) {
+                      claims += row.claims[i];
+                      strength += row.strength_of_evidence[i];
+                    } else {
+                      claims += row.claims[i] + ", ";
+                      strength += row.strength_of_evidence[i] + ", ";
+                    }
+                  }
 
                   return (
                     <TableRow hover tabIndex={-1} key={row.title}>
-                      <TableCell align="left">{row.title}</TableCell>
+                      <TableCell align="left">
+                        <a href={url} target="_blank" rel="noopener noreferrer">
+                          {row.title}
+                        </a>
+                      </TableCell>
                       <TableCell align="left">{row.author}</TableCell>
                       <TableCell align="left">{row.year}</TableCell>
                       <TableCell align="left">{row.type}</TableCell>
                       <TableCell align="left">{row.journal}</TableCell>
                       <TableCell align="left">{row.se_practice}</TableCell>
-                      <TableCell align="left">{row.claims}</TableCell>
-                      <TableCell align="left">
-                        {row.strength_of_evidence}
-                      </TableCell>
+                      <TableCell align="left">{claims}</TableCell>
+                      <TableCell align="left">{strength}</TableCell>
                     </TableRow>
                   );
                 })}
