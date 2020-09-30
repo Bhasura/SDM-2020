@@ -71,21 +71,22 @@ export default class SearchForm extends Component {
   };
 
   populateValues() {
-    if (this.state.name_of_field === "SE Practice") {
+    //not sure if claims is generic across all se_practices?
+    if (this.state.name_of_field === "Agile") {
       this.setState({
         values: [
           {
-            label: "TDD",
-            value: "TDD",
+            label: "Claim 1",
+            value: "Claim 1",
           },
           {
-            label: "Agile",
-            value: "Agile",
+            label: "Claim 2",
+            value: "Claim 2",
           },
         ],
       });
     }
-    if (this.state.name_of_field === "TDD Claims") {
+    if (this.state.name_of_field === "TDD") {
       /*       axios
       .get("/record_attributes/tdd_claims")
       .then((res) => {

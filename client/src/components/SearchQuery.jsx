@@ -70,7 +70,7 @@ const SearchQuery = (props) => {
               className={classes.GreenSeer}
               id="demo-simple-select-outlined-label"
             >
-              Name of Field
+              SE Practice
             </InputLabel>
             <Select
               labelId="demo-simple-select-outlined-label"
@@ -80,8 +80,8 @@ const SearchQuery = (props) => {
               label="Name of Field"
               name="name_of_field"
             >
-              <MenuItem value={"SE Practice"}>SE Practice</MenuItem>
-              <MenuItem value={"TDD Claims"}>TDD Claims</MenuItem>
+              <MenuItem value={"TDD"}>TDD</MenuItem>
+              <MenuItem value={"Agile"}>Agile</MenuItem>
             </Select>
           </FormControl>
 
@@ -111,7 +111,7 @@ const SearchQuery = (props) => {
           </FormControl> */}
 
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-mutiple-chip-label">Value</InputLabel>
+            <InputLabel id="demo-mutiple-chip-label" className={classes.GreenSeer}>Claims</InputLabel>
             <Select
               labelId="demo-mutiple-chip-label"
               id="demo-mutiple-chip"
