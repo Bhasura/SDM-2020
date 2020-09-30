@@ -6,6 +6,7 @@ const Record = require("../models/Record");
 records.use(cors());
 
 records.get("/records", function (req, res) {
+  claims = req.query.claims
   Record.find(
     {
       $or: [
@@ -20,7 +21,7 @@ records.get("/records", function (req, res) {
         {
           $and: [
             {
-              claims: { $regex: ".*" + req.query.claims + ".*" },
+              claims: { $in: claims },
               year: { $gte: req.query.from_date, $lte: req.query.to_date },
             },
           ],

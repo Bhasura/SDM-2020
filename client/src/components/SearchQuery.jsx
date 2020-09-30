@@ -6,6 +6,8 @@ import {
   Grid,
   FormControl,
   InputLabel,
+  Input,
+  Chip,
   //IconButton,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -40,6 +42,24 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchQuery = (props) => {
   const classes = useStyles();
+  const [personName, setPersonName] = React.useState([]);
+
+  const handleChange = (event) => {
+    setPersonName(event.target.value);
+  };
+
+  const names = [
+    "Oliver Hansen",
+    "Van Henry",
+    "April Tucker",
+    "Ralph Hubbard",
+    "Omar Alexander",
+    "Carlos Abbott",
+    "Miriam Wagner",
+    "Bradley Wilkerson",
+    "Virginia Andrews",
+    "Kelly Snyder"
+  ];
 
   return (
     <Paper className={classes.PaperBack} elevation={7} variant="outlined">
@@ -65,7 +85,7 @@ const SearchQuery = (props) => {
             </Select>
           </FormControl>
 
-          <FormControl className={classes.formControl}>
+{/*           <FormControl className={classes.formControl}>
             <InputLabel
               className={classes.GreenSeer}
               id="demo-simple-select-outlined-label"
@@ -87,6 +107,35 @@ const SearchQuery = (props) => {
                   </MenuItem>
                 );
               })}
+            </Select>
+          </FormControl> */}
+
+          <FormControl className={classes.formControl}>
+            <InputLabel id="demo-mutiple-chip-label">Value</InputLabel>
+            <Select
+              labelId="demo-mutiple-chip-label"
+              id="demo-mutiple-chip"
+              multiple
+              value={props.selected_value}
+              onChange={props.handleChange}
+              name="selected_value"
+              input={<Input id="select-multiple-chip" />}
+              renderValue={(selected) => (
+                <div>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value}/>
+                  ))}
+                </div>
+              )}
+            >
+              {props.values.map((p, index) => (
+                <MenuItem
+                  key={index}
+                  value={p.value}
+                >
+                  {p.value}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
 
