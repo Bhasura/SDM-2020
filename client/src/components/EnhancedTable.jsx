@@ -1,15 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
-import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-import TableSortLabel from "@material-ui/core/TableSortLabel";
 import Paper from "@material-ui/core/Paper";
 import EnhancedTableHead from "./EnhancedTableHead";
 
@@ -64,13 +60,13 @@ function stableSort(array, comparator) {
 }
 
 export default function EnhancedTable(props) {
-  const [rows, setRow] = React.useState([]);
+  const rows = [];
   const classes = useStyles();
   const [order, setOrder] = React.useState("desc");
   const [orderBy, setOrderBy] = React.useState("year");
-  const [selected, setSelected] = React.useState([]);
+  const selected = [];
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  const dense = false;
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleRequestSort = (event, property) => {

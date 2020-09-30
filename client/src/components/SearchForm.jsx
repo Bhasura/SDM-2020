@@ -2,7 +2,6 @@ import React from "react";
 import { Component } from "react";
 import { Grid, Button, withStyles } from "@material-ui/core";
 import axios from "axios";
-import RecordResults from "../components/RecordResults";
 import SearchQuery from "./SearchQuery";
 import DateSlider from "./DateSlider";
 import EnhancedTable from "./EnhancedTable";
@@ -187,7 +186,6 @@ export default class SearchForm extends Component {
         </Grid>
 
         {this.state.submitButtonPressed && !this.state.cancelButtonPressed && (
-          //<RecordResults records={this.state.records} />
           <EnhancedTable rows={this.state.records}/>
         )}
       </div>
