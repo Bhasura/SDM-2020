@@ -24,11 +24,9 @@ export default class SearchForm extends Component {
     super();
     this.state = {
       se_practice: "",
-      operators: [],
       values: [],
       //selected_value: "",
       selected_value: [],
-      selected_operator: "",
       name_of_field: "",
       from_date: 2015,
       to_date: 2020,
@@ -131,11 +129,20 @@ export default class SearchForm extends Component {
   onCancel = (e) => {
     this.clearRecords();
     this.cancelButtonPress();
+    this.clearFields();
   };
 
   clearRecords = () => {
     return this.setState({ records: [] });
   };
+
+  clearFields = () => {
+    return this.setState({
+      name_of_field: "",
+      claims: "",
+      selected_value: [],
+    })
+  }
 
   cancelButtonPress = () => {
     this.setState({
