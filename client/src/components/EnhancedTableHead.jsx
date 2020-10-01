@@ -29,6 +29,12 @@ const headCells = [
     disablePadding: false,
     label: "Strength of Evidence",
   },
+  {
+    id: "research_methodology",
+    numeric: false,
+    disablePadding: false,
+    label: "Research Methodology",
+  },
 ];
 
 export default function EnhancedTableHead(props) {

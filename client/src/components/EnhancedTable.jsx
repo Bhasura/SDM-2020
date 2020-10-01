@@ -140,6 +140,7 @@ export default function EnhancedTable(props) {
                       <TableCell align="left">{row.se_practice}</TableCell>
                       <TableCell align="left">{claims}</TableCell>
                       <TableCell align="left">{strength}</TableCell>
+                      <TableCell align="left">{row.research_methodology}</TableCell>
                     </TableRow>
                   );
                 })}

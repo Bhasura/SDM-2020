@@ -7,6 +7,8 @@ records.use(cors());
 
 records.get("/records", function (req, res) {
   claims = req.query.claims
+  research_methodology = req.query.research_methodology
+
   Record.find(
     {
       $or: [
@@ -22,6 +24,7 @@ records.get("/records", function (req, res) {
           $and: [
             {
               claims: { $in: claims },
+              research_methodology: { $in: research_methodology },
               year: { $gte: req.query.from_date, $lte: req.query.to_date },
             },
           ],

@@ -25,12 +25,12 @@ export default class SearchForm extends Component {
     this.state = {
       se_practice: "",
       values: [],
-      //selected_value: "",
       selected_value: [],
       name_of_field: "",
       from_date: 2015,
       to_date: 2020,
       claims: "",
+      research_methodology: [],
       records: [],
       cancelButtonPressed: false,
       submitButtonPressed: false,
@@ -60,6 +60,7 @@ export default class SearchForm extends Component {
           from_date: this.state.from_date,
           to_date: this.state.to_date,
           claims: this.state.selected_value,
+          research_methodology: this.state.research_methodology,
         },
       })
       .then((res) => {
@@ -108,7 +109,6 @@ export default class SearchForm extends Component {
     }
   }
 
-
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -142,6 +142,7 @@ export default class SearchForm extends Component {
       name_of_field: "",
       claims: "",
       selected_value: [],
+      research_methodology: [],
     })
   }
 
@@ -155,9 +156,9 @@ export default class SearchForm extends Component {
   render() {
     return (
       <div style={{ padding: 100 }}>
-        <Grid container direction="column" spacing={3}>
+        <Grid container direction="row" spacing={0}>
           <Grid item container>
-            <Grid item xs={1} sm={2} md={1} />
+            {/* <Grid item xs={1} sm={2} md={1} /> */}
             <Grid item xs={1} sm={2} />
             <Grid item xs={12} sm={8}>
               <form noValidate onSubmit={this.onSubmit}>
@@ -167,6 +168,7 @@ export default class SearchForm extends Component {
                   name_of_field={this.state.name_of_field}
                   handleChange={this.handleChange}
                   handleFieldNameChange={this.handleFieldNameChange}
+                  research_methodology={this.state.research_methodology}
                 />
                 <DateSlider
                   callbackFromParent={this.myCallback}

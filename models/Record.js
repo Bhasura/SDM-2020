@@ -33,6 +33,10 @@ const RecordSchema = new Schema({
   doi: {
     type: String,
     required: true
+  },
+  research_methodology: {
+    type: String,
+    required: true
   }
 });
 

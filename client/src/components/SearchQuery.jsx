@@ -8,16 +8,15 @@ import {
   InputLabel,
   Input,
   Chip,
-  //IconButton,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-// import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-// import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
+
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    minWidth: 
+    120,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -67,33 +66,13 @@ const SearchQuery = (props) => {
             </Select>
           </FormControl>
 
-{/*           <FormControl className={classes.formControl}>
-            <InputLabel
-              className={classes.GreenSeer}
-              id="demo-simple-select-outlined-label"
-            >
-              Value
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={props.selected_value}
-              onChange={props.handleChange}
-              label="Value"
-              name="selected_value"
-            >
-              {props.values.map((p, index) => {
-                return (
-                  <MenuItem key={index} value={p.value}>
-                    {p.label}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </FormControl> */}
-
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-mutiple-chip-label" className={classes.GreenSeer}>Claims</InputLabel>
+            <InputLabel
+              id="demo-mutiple-chip-label"
+              className={classes.GreenSeer}
+            >
+              Claims
+            </InputLabel>
             <Select
               labelId="demo-mutiple-chip-label"
               id="demo-mutiple-chip"
@@ -105,29 +84,47 @@ const SearchQuery = (props) => {
               renderValue={(selected) => (
                 <div>
                   {selected.map((value) => (
-                    <Chip key={value} label={value}/>
+                    <Chip key={value} label={value} />
                   ))}
                 </div>
               )}
             >
               {props.values.map((p, index) => (
-                <MenuItem
-                  key={index}
-                  value={p.value}
-                >
+                <MenuItem key={index} value={p.value}>
                   {p.value}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
 
-          {/* <IconButton className={classes.PlusMinusButton} aria-label="add">
-            <AddCircleOutlineIcon />
-          </IconButton>
+          <FormControl className={classes.formControl}>
+            <InputLabel
+              id="demo-mutiple-chip-label"
+              className={classes.GreenSeer}
+            >
+              Methodology
+            </InputLabel>
+            <Select
+              labelId="demo-mutiple-chip-label"
+              id="demo-mutiple-chip"
+              multiple
+              value={props.research_methodology}
+              onChange={props.handleChange}
+              name="research_methodology"
+              input={<Input id="select-multiple-chip" />}
+              renderValue={(selected) => (
+                <div>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value} />
+                  ))}
+                </div>
+              )}
+            >
+              <MenuItem value={"Case Study"}>Case Study</MenuItem>
+              <MenuItem value={"Survey"}>Survey</MenuItem>
+            </Select>
+          </FormControl>
 
-          <IconButton className={classes.PlusMinusButton} aria-label="remove">
-            <RemoveCircleOutlineIcon />
-          </IconButton> */}
         </Grid>
       </Grid>
     </Paper>
