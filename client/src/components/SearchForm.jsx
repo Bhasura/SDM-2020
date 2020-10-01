@@ -31,7 +31,7 @@ export default class SearchForm extends Component {
       from_date: 2015,
       to_date: 2020,
       claims: "",
-      research_methodology: "",
+      research_methodology: [],
       records: [],
       cancelButtonPressed: false,
       submitButtonPressed: false,
@@ -110,7 +110,6 @@ export default class SearchForm extends Component {
     }
   }
 
-
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -144,7 +143,7 @@ export default class SearchForm extends Component {
       name_of_field: "",
       claims: "",
       selected_value: [],
-      research_methodology: "",
+      research_methodology: [],
     })
   }
 

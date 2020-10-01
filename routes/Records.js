@@ -24,13 +24,6 @@ records.get("/records", function (req, res) {
           $and: [
             {
               claims: { $in: claims },
-              year: { $gte: req.query.from_date, $lte: req.query.to_date },
-            },
-          ],
-        },
-        {
-          $and: [
-            {
               research_methodology: { $in: research_methodology },
               year: { $gte: req.query.from_date, $lte: req.query.to_date },
             },

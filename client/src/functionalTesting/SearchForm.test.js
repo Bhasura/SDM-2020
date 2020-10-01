@@ -63,6 +63,7 @@ describe("handleChange", () => {
       to_date: 2020,
       claims: "",
       records: [],
+      research_methodology: [],
       cancelButtonPressed: false,
       submitButtonPressed: false,
     };
@@ -121,6 +122,7 @@ describe("onCancel", () => {
       to_date: 2020,
       claims: "",
       records: [],
+      research_methodology: [],
       cancelButtonPressed: true,
       submitButtonPressed: false,
     };

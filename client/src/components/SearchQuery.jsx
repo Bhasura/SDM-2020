@@ -67,33 +67,13 @@ const SearchQuery = (props) => {
             </Select>
           </FormControl>
 
-{/*           <FormControl className={classes.formControl}>
-            <InputLabel
-              className={classes.GreenSeer}
-              id="demo-simple-select-outlined-label"
-            >
-              Value
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={props.selected_value}
-              onChange={props.handleChange}
-              label="Value"
-              name="selected_value"
-            >
-              {props.values.map((p, index) => {
-                return (
-                  <MenuItem key={index} value={p.value}>
-                    {p.label}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </FormControl> */}
-
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-mutiple-chip-label" className={classes.GreenSeer}>Claims</InputLabel>
+            <InputLabel
+              id="demo-mutiple-chip-label"
+              className={classes.GreenSeer}
+            >
+              Claims
+            </InputLabel>
             <Select
               labelId="demo-mutiple-chip-label"
               id="demo-mutiple-chip"
@@ -105,16 +85,13 @@ const SearchQuery = (props) => {
               renderValue={(selected) => (
                 <div>
                   {selected.map((value) => (
-                    <Chip key={value} label={value}/>
+                    <Chip key={value} label={value} />
                   ))}
                 </div>
               )}
             >
               {props.values.map((p, index) => (
-                <MenuItem
-                  key={index}
-                  value={p.value}
-                >
+                <MenuItem key={index} value={p.value}>
                   {p.value}
                 </MenuItem>
               ))}
@@ -122,6 +99,34 @@ const SearchQuery = (props) => {
           </FormControl>
 
           <FormControl className={classes.formControl}>
+            <InputLabel
+              id="demo-mutiple-chip-label"
+              className={classes.GreenSeer}
+            >
+              Methodology
+            </InputLabel>
+            <Select
+              labelId="demo-mutiple-chip-label"
+              id="demo-mutiple-chip"
+              multiple
+              value={props.research_methodology}
+              onChange={props.handleChange}
+              name="research_methodology"
+              input={<Input id="select-multiple-chip" />}
+              renderValue={(selected) => (
+                <div>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value} />
+                  ))}
+                </div>
+              )}
+            >
+              <MenuItem value={"Case Study"}>Case Study</MenuItem>
+              <MenuItem value={"Survey"}>Survey</MenuItem>
+            </Select>
+          </FormControl>
+
+          {/* <FormControl className={classes.formControl}>
             <InputLabel
               className={classes.GreenSeer}
               id="demo-simple-select-outlined-label"
@@ -139,7 +144,7 @@ const SearchQuery = (props) => {
               <MenuItem value={"Case Study"}>Case Study</MenuItem>
               <MenuItem value={"Survey"}>Survey</MenuItem>
             </Select>
-          </FormControl>
+          </FormControl> */}
 
           {/* <IconButton className={classes.PlusMinusButton} aria-label="add">
             <AddCircleOutlineIcon />
