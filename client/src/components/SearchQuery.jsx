@@ -42,24 +42,6 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchQuery = (props) => {
   const classes = useStyles();
-  const [personName, setPersonName] = React.useState([]);
-
-  const handleChange = (event) => {
-    setPersonName(event.target.value);
-  };
-
-  const names = [
-    "Oliver Hansen",
-    "Van Henry",
-    "April Tucker",
-    "Ralph Hubbard",
-    "Omar Alexander",
-    "Carlos Abbott",
-    "Miriam Wagner",
-    "Bradley Wilkerson",
-    "Virginia Andrews",
-    "Kelly Snyder"
-  ];
 
   return (
     <Paper className={classes.PaperBack} elevation={7} variant="outlined">
