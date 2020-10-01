@@ -6,6 +6,8 @@ import {
   Grid,
   FormControl,
   InputLabel,
+  Input,
+  Chip,
   //IconButton,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -50,7 +52,7 @@ const SearchQuery = (props) => {
               className={classes.GreenSeer}
               id="demo-simple-select-outlined-label"
             >
-              Name of Field
+              SE Practice
             </InputLabel>
             <Select
               labelId="demo-simple-select-outlined-label"
@@ -60,12 +62,12 @@ const SearchQuery = (props) => {
               label="Name of Field"
               name="name_of_field"
             >
-              <MenuItem value={"SE Practice"}>SE Practice</MenuItem>
-              <MenuItem value={"TDD Claims"}>TDD Claims</MenuItem>
+              <MenuItem value={"TDD"}>TDD</MenuItem>
+              <MenuItem value={"Agile"}>Agile</MenuItem>
             </Select>
           </FormControl>
 
-          <FormControl className={classes.formControl}>
+{/*           <FormControl className={classes.formControl}>
             <InputLabel
               className={classes.GreenSeer}
               id="demo-simple-select-outlined-label"
@@ -87,6 +89,35 @@ const SearchQuery = (props) => {
                   </MenuItem>
                 );
               })}
+            </Select>
+          </FormControl> */}
+
+          <FormControl className={classes.formControl}>
+            <InputLabel id="demo-mutiple-chip-label" className={classes.GreenSeer}>Claims</InputLabel>
+            <Select
+              labelId="demo-mutiple-chip-label"
+              id="demo-mutiple-chip"
+              multiple
+              value={props.selected_value}
+              onChange={props.handleChange}
+              name="selected_value"
+              input={<Input id="select-multiple-chip" />}
+              renderValue={(selected) => (
+                <div>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value}/>
+                  ))}
+                </div>
+              )}
+            >
+              {props.values.map((p, index) => (
+                <MenuItem
+                  key={index}
+                  value={p.value}
+                >
+                  {p.value}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
 

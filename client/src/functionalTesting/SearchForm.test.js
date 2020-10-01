@@ -56,10 +56,8 @@ describe("handleChange", () => {
     };
     const expected = {
       se_practice: "TDD",
-      operators: [],
       values: [],
-      selected_value: "",
-      selected_operator: "",
+      selected_value: [],
       name_of_field: "",
       from_date: 2015,
       to_date: 2020,
@@ -111,5 +109,22 @@ describe("onCancel", () => {
   it("should set cancelButtonPressed state to true", () => {
     wrapper.instance().cancelButtonPress();
     expect(wrapper.state("cancelButtonPressed")).toEqual(true);
+  });
+
+  it("should clear fields on cancel", () => {
+    const expected = {
+      se_practice: "",
+      values: [],
+      selected_value: [],
+      name_of_field: "",
+      from_date: 2015,
+      to_date: 2020,
+      claims: "",
+      records: [],
+      cancelButtonPressed: true,
+      submitButtonPressed: false,
+    };
+    wrapper.instance().cancelButtonPress();
+    expect(wrapper.state()).toEqual(expected);
   });
 });

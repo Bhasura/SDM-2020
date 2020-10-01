@@ -24,10 +24,9 @@ export default class SearchForm extends Component {
     super();
     this.state = {
       se_practice: "",
-      operators: [],
       values: [],
-      selected_value: "",
-      selected_operator: "",
+      //selected_value: "",
+      selected_value: [],
       name_of_field: "",
       from_date: 2015,
       to_date: 2020,
@@ -72,21 +71,22 @@ export default class SearchForm extends Component {
   };
 
   populateValues() {
-    if (this.state.name_of_field === "SE Practice") {
+    //not sure if claims is generic across all se_practices?
+    if (this.state.name_of_field === "Agile") {
       this.setState({
         values: [
           {
-            label: "TDD",
-            value: "TDD",
+            label: "Claim 1",
+            value: "Claim 1",
           },
           {
-            label: "Agile",
-            value: "Agile",
+            label: "Claim 2",
+            value: "Claim 2",
           },
         ],
       });
     }
-    if (this.state.name_of_field === "TDD Claims") {
+    if (this.state.name_of_field === "TDD") {
       /*       axios
       .get("/record_attributes/tdd_claims")
       .then((res) => {
@@ -130,11 +130,20 @@ export default class SearchForm extends Component {
   onCancel = (e) => {
     this.clearRecords();
     this.cancelButtonPress();
+    this.clearFields();
   };
 
   clearRecords = () => {
     return this.setState({ records: [] });
   };
+
+  clearFields = () => {
+    return this.setState({
+      name_of_field: "",
+      claims: "",
+      selected_value: [],
+    })
+  }
 
   cancelButtonPress = () => {
     this.setState({
