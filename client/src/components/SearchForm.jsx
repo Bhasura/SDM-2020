@@ -25,7 +25,6 @@ export default class SearchForm extends Component {
     this.state = {
       se_practice: "",
       values: [],
-      //selected_value: "",
       selected_value: [],
       name_of_field: "",
       from_date: 2015,
@@ -157,9 +156,9 @@ export default class SearchForm extends Component {
   render() {
     return (
       <div style={{ padding: 100 }}>
-        <Grid container direction="column" spacing={3}>
+        <Grid container direction="row" spacing={0}>
           <Grid item container>
-            <Grid item xs={1} sm={2} md={1} />
+            {/* <Grid item xs={1} sm={2} md={1} /> */}
             <Grid item xs={1} sm={2} />
             <Grid item xs={12} sm={8}>
               <form noValidate onSubmit={this.onSubmit}>
