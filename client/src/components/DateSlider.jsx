@@ -12,7 +12,8 @@ const Title = withStyles({
 const CustomPaper = withStyles({
   root : {
     backgroundColor: "#D8F3DC",
-    width: 800
+    //width: 800
+    width: 700
   },
 })(Paper)
 
@@ -26,7 +27,8 @@ const CustomSlider = withStyles({
 
 const RadioGrid = withStyles({
   root : {
- 
+    paddingLeft: 50,
+    paddingTop: 10
   },
 })(Grid)
 
