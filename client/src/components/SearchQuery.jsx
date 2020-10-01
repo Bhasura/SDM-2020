@@ -121,6 +121,26 @@ const SearchQuery = (props) => {
             </Select>
           </FormControl>
 
+          <FormControl className={classes.formControl}>
+            <InputLabel
+              className={classes.GreenSeer}
+              id="demo-simple-select-outlined-label"
+            >
+              Methodology
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-outlined-label"
+              id="demo-simple-select-outlined"
+              value={props.research_methodology}
+              onClick={props.handleChange}
+              label="Research Methodology"
+              name="research_methodology"
+            >
+              <MenuItem value={"Case Study"}>Case Study</MenuItem>
+              <MenuItem value={"Survey"}>Survey</MenuItem>
+            </Select>
+          </FormControl>
+
           {/* <IconButton className={classes.PlusMinusButton} aria-label="add">
             <AddCircleOutlineIcon />
           </IconButton>

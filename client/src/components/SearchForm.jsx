@@ -31,6 +31,7 @@ export default class SearchForm extends Component {
       from_date: 2015,
       to_date: 2020,
       claims: "",
+      research_methodology: "",
       records: [],
       cancelButtonPressed: false,
       submitButtonPressed: false,
@@ -60,6 +61,7 @@ export default class SearchForm extends Component {
           from_date: this.state.from_date,
           to_date: this.state.to_date,
           claims: this.state.selected_value,
+          research_methodology: this.state.research_methodology,
         },
       })
       .then((res) => {
@@ -142,6 +144,7 @@ export default class SearchForm extends Component {
       name_of_field: "",
       claims: "",
       selected_value: [],
+      research_methodology: "",
     })
   }
 
@@ -167,6 +170,7 @@ export default class SearchForm extends Component {
                   name_of_field={this.state.name_of_field}
                   handleChange={this.handleChange}
                   handleFieldNameChange={this.handleFieldNameChange}
+                  research_methodology={this.state.research_methodology}
                 />
                 <DateSlider
                   callbackFromParent={this.myCallback}
