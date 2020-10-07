@@ -114,6 +114,7 @@ export default class SearchForm extends Component {
   }
 
   handleFieldNameChange = (e) => {
+    console.log(e.target.value)
     this.setState(
       { [e.target.name]: e.target.value },
       () => this.populateValues()

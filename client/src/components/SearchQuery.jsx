@@ -8,15 +8,16 @@ import {
   InputLabel,
   Input,
   Chip,
+  TextField
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 
-    120,
+    minWidth:
+      120,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -42,6 +43,17 @@ const useStyles = makeStyles((theme) => ({
 const SearchQuery = (props) => {
   const classes = useStyles();
 
+  const SE_Practices = [
+      {
+        label: "TDD",
+        value: "TDD",
+      },
+      {
+        label: "Agile",
+        value: "Agile",
+      },
+    ]
+
   return (
     <Paper className={classes.PaperBack} elevation={7} variant="outlined">
       <Grid container direction="row">
@@ -65,6 +77,17 @@ const SearchQuery = (props) => {
               <MenuItem value={"Agile"}>Agile</MenuItem>
             </Select>
           </FormControl>
+
+          <Autocomplete
+            id="combo-box-demo"
+            options={SE_Practices}
+            multiple
+            getOptionLabel={(option) => option.label}
+            style={{ width: 150 }}
+            onChange={console.log('Hi there')}
+            name="name_of_field"
+            renderInput={(params) => <TextField {...params} label="SE Practice" variant="outlined" />}
+          />
 
           <FormControl className={classes.formControl}>
             <InputLabel
