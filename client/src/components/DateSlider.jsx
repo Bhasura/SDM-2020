@@ -1,11 +1,10 @@
 import React, {Component} from "react";
-import { Typography, Slider, Paper, Grid, withStyles } from "@material-ui/core";
+import { Typography, Slider, Paper, Grid, withStyles, Container } from "@material-ui/core";
 import DateRadioButtons from "./DateRadioButtons";
 
 const Title = withStyles({
   root : {
-    color: "#52B788",
-    paddingLeft: 10
+    color: "#52B788"
   },
 })(Typography)
 
@@ -21,8 +20,8 @@ const CustomSlider = withStyles({
   root : {
     color: "#52B788",
     width: 200,
-    paddingLeft: 10
-  },
+    marginTop: 28
+  }
 })(Slider)
 
 const RadioGrid = withStyles({
@@ -38,6 +37,14 @@ const RadioGrid = withStyles({
 //     color: "white",
 //   },
 // })(Button);
+
+const DateWrapper = withStyles({
+  root : {
+    maxWidth: 700, 
+    padding: 0,
+    marginLeft: 10
+  }
+})(Container)
 
 export default class RangeSlider extends Component {
   constructor() {
@@ -75,27 +82,31 @@ export default class RangeSlider extends Component {
     this.props.callbackFromParent(this.state.value);
   }
 
+  
   render() {
+
     return (
       <CustomPaper elevation={7} variant="outlined" >
         <Grid container direction="row">
           <Grid item>
-            <Title
-              id="range-slider"
-              gutterBottom
-            >
-              Select Date Range
-            </Title>
-            <CustomSlider
-              id="sliderTest"
-              value={this.state.value}
-              onChange={this.handleChange}
-              valueLabelDisplay="auto"
-              aria-labelledby="range-slider"
-              getAriaValueText={this.valuetext}
-              min={1990}
-              max={2020}
-            />
+            <DateWrapper>
+              <Title
+                id="range-slider"
+                gutterBottom
+              >
+                Select Date Range
+              </Title>
+              <CustomSlider
+                id="sliderTest"
+                value={this.state.value}
+                onChange={this.handleChange}
+                valueLabelDisplay="on"
+                aria-labelledby="range-slider"
+                getAriaValueText={this.valuetext}
+                min={1990}
+                max={2020}
+              />
+            </DateWrapper>
           </Grid>
           <RadioGrid item >
             <DateRadioButtons radioButtonCallback={this.dateSliderCallback}/>
