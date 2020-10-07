@@ -4,7 +4,8 @@ import DateRadioButtons from "./DateRadioButtons";
 
 const Title = withStyles({
   root : {
-    color: "#52B788"
+    color: "#52B788",
+    marginTop: 5
   },
 })(Typography)
 
@@ -26,8 +27,8 @@ const CustomSlider = withStyles({
 
 const RadioGrid = withStyles({
   root : {
-    paddingLeft: 50,
-    paddingTop: 10
+    // paddingLeft: 50,
+    // paddingTop: 10
   },
 })(Grid)
 
@@ -43,6 +44,14 @@ const DateWrapper = withStyles({
     maxWidth: 700, 
     padding: 0,
     marginLeft: 10
+  }
+})(Container)
+
+const RadioButtonWrapper = withStyles({
+  root : {
+    marginLeft: 30,
+    marginTop: 30,
+    color: "#52B788"
   }
 })(Container)
 
@@ -71,18 +80,17 @@ export default class RangeSlider extends Component {
 
   dateSliderCallback = (dataFromRadioButtons) => {
     let newValue = [];
-    if(dataFromRadioButtons === "5") {
+    if(dataFromRadioButtons === "0") {
+      newValue = [2020, 2020];
+    } else if(dataFromRadioButtons === "5") {
       newValue = [2015, 2020];
-    } else if(dataFromRadioButtons === "10") {
-      newValue = [2010, 2020];
     } else {
-      newValue = [2005, 2020];
+      newValue = [1990, 2020];
     }; 
     this.setValue(newValue)
     this.props.callbackFromParent(this.state.value);
   }
 
-  
   render() {
 
     return (
@@ -108,8 +116,10 @@ export default class RangeSlider extends Component {
               />
             </DateWrapper>
           </Grid>
-          <RadioGrid item >
-            <DateRadioButtons radioButtonCallback={this.dateSliderCallback}/>
+          <RadioGrid item >         
+            <RadioButtonWrapper>
+              <DateRadioButtons radioButtonCallback={this.dateSliderCallback}/>
+            </RadioButtonWrapper>
           </RadioGrid>
           {/* <Grid item >
             <ResetButton>Reset Date</ResetButton>
