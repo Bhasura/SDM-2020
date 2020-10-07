@@ -8,16 +8,15 @@ import {
   InputLabel,
   Input,
   Chip,
-  TextField
+  TextField,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth:
-      120,
+    minWidth: 120,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -43,23 +42,15 @@ const useStyles = makeStyles((theme) => ({
 const SearchQuery = (props) => {
   const classes = useStyles();
 
-  const SE_Practices = [
-      {
-        label: "TDD",
-        value: "TDD",
-      },
-      {
-        label: "Agile",
-        value: "Agile",
-      },
-    ]
-
+  const SE_Practices = ["ALL", "TDD", "Agile"];
+  const [value, setValue] = React.useState(SE_Practices[0]);
+  const [inputValue, setInputValue] = React.useState("");
   return (
     <Paper className={classes.PaperBack} elevation={7} variant="outlined">
       <Grid container direction="row">
         <Grid item>
           <FormControl className={classes.formControl}>
-            <InputLabel
+            {/* <InputLabel
               className={classes.GreenSeer}
               id="demo-simple-select-outlined-label"
             >
@@ -75,18 +66,25 @@ const SearchQuery = (props) => {
             >
               <MenuItem value={"TDD"}>TDD</MenuItem>
               <MenuItem value={"Agile"}>Agile</MenuItem>
-            </Select>
+            </Select> */}
           </FormControl>
 
           <Autocomplete
             id="combo-box-demo"
             options={SE_Practices}
-            multiple
-            getOptionLabel={(option) => option.label}
             style={{ width: 150 }}
-            onChange={console.log('Hi there')}
+            value={value}
+            inputValue={inputValue}
+            onChange={(event, newValue) => {
+              props.handleSelectNameChange(newValue);
+            }}
+            onInputChange={(event, newInputValue) => {
+              setInputValue(newInputValue);
+            }}
             name="name_of_field"
-            renderInput={(params) => <TextField {...params} label="SE Practice" variant="outlined" />}
+            renderInput={(params) => (
+              <TextField {...params} label="SE Practice" variant="outlined" />
+            )}
           />
 
           <FormControl className={classes.formControl}>
@@ -147,7 +145,6 @@ const SearchQuery = (props) => {
               <MenuItem value={"Survey"}>Survey</MenuItem>
             </Select>
           </FormControl>
-
         </Grid>
       </Grid>
     </Paper>

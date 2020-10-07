@@ -114,10 +114,15 @@ export default class SearchForm extends Component {
   }
 
   handleFieldNameChange = (e) => {
-    console.log(e.target.value)
-    this.setState(
-      { [e.target.name]: e.target.value },
-      () => this.populateValues()
+    console.log(e);
+    this.setState({ [e.target.name]: e.target.value }, () =>
+      this.populateValues()
+    );
+  };
+
+  handleSelectNameChange = (selected_SE_Practice) => {
+    this.setState({ name_of_field: selected_SE_Practice }, () =>
+      this.populateValues()
     );
   };
 
@@ -144,8 +149,8 @@ export default class SearchForm extends Component {
       claims: "",
       selected_value: [],
       research_methodology: [],
-    })
-  }
+    });
+  };
 
   cancelButtonPress = () => {
     this.setState({
@@ -169,6 +174,7 @@ export default class SearchForm extends Component {
                   name_of_field={this.state.name_of_field}
                   handleChange={this.handleChange}
                   handleFieldNameChange={this.handleFieldNameChange}
+                  handleSelectNameChange={this.handleSelectNameChange}
                   research_methodology={this.state.research_methodology}
                 />
                 <DateSlider
@@ -198,8 +204,9 @@ export default class SearchForm extends Component {
         </Grid>
 
         {this.state.submitButtonPressed && !this.state.cancelButtonPressed && (
-          <EnhancedTable rows={this.state.records}/>
+          <EnhancedTable rows={this.state.records} />
         )}
       </div>
-    )}
+    );
   }
+}
