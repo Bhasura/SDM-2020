@@ -77,6 +77,7 @@ const SearchQuery = (props) => {
             inputValue={inputValue}
             onChange={(event, newValue) => {
               props.handleSelectNameChange(newValue);
+              setValue(newValue);
             }}
             onInputChange={(event, newInputValue) => {
               setInputValue(newInputValue);
