@@ -48,29 +48,43 @@ beforeEach(() => {
 
 describe("handleChange", () => {
   it("should call setState on se_practice", () => {
-    const mockEvent = {
-      target: {
-        name: "se_practice",
-        value: "TDD",
-      },
-    };
+    const mockEvent = "TDD";
     const expected = {
-      se_practice: "TDD",
       values: [],
-      selected_value: [],
-      name_of_field: "",
+      selected_claims: [],
+      selected_se_practices: ["TDD"],
       from_date: 2015,
       to_date: 2020,
-      claims: "",
       records: [],
       research_methodology: [],
       cancelButtonPressed: false,
       submitButtonPressed: false,
     };
-    wrapper.instance().handleChange(mockEvent);
+    wrapper.instance().handleSelectNameChange(mockEvent);
 
     expect(wrapper.state()).toEqual(expected);
   });
+
+  it("should call setState on se_practice", () => {
+    const mockEvent = "Improves Code Quality";
+      
+    const expected = {
+      values: [],
+      selected_claims: ["Improves Code Quality"],
+      selected_se_practices: [],
+      from_date: 2015,
+      to_date: 2020,
+      records: [],
+      research_methodology: [],
+      cancelButtonPressed: false,
+      submitButtonPressed: false,
+    };
+    wrapper.instance().handleSelectedClaims(mockEvent);
+
+    expect(wrapper.state()).toEqual(expected);
+  });
+  
+
 });
 
 describe("onSubmit", () => {
@@ -114,13 +128,11 @@ describe("onCancel", () => {
 
   it("should clear fields on cancel", () => {
     const expected = {
-      se_practice: "",
       values: [],
-      selected_value: [],
-      name_of_field: "",
+      selected_claims: [],
+      selected_se_practices: [],
       from_date: 2015,
       to_date: 2020,
-      claims: "",
       records: [],
       research_methodology: [],
       cancelButtonPressed: true,

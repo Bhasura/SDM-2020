@@ -23,13 +23,12 @@ export default class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
-      se_practice: "",
       values: [],
-      selected_value: [],
-      name_of_field: "",
+      available_claims: ["All Claim Benefits"],
+      selected_claims: [],
+      selected_se_practices: [],
       from_date: 2015,
       to_date: 2020,
-      claims: "",
       research_methodology: [],
       records: [],
       cancelButtonPressed: false,
@@ -56,10 +55,10 @@ export default class SearchForm extends Component {
     return axios
       .get("/records", {
         params: {
-          se_practice: this.state.selected_value,
+          se_practice: this.state.selected_se_practices,
           from_date: this.state.from_date,
           to_date: this.state.to_date,
-          claims: this.state.selected_value,
+          claims: this.state.selected_claims,
           research_methodology: this.state.research_methodology,
         },
       })
@@ -73,9 +72,11 @@ export default class SearchForm extends Component {
 
   populateValues() {
     //not sure if claims is generic across all se_practices?
-    if (this.state.name_of_field === "Agile") {
-      this.setState({
-        values: [
+    console.log("before array")
+    var array = [];
+
+    if (this.state.selected_se_practices.includes("Agile")) {
+        var values = [
           {
             label: "Claim 1",
             value: "Claim 1",
@@ -84,18 +85,17 @@ export default class SearchForm extends Component {
             label: "Claim 2",
             value: "Claim 2",
           },
-        ],
-      });
+        ];
+        array.concat(values);
     }
-    if (this.state.name_of_field === "TDD") {
+    if (this.state.selected_se_practices.includes("TDD")) {
       /*       axios
       .get("/record_attributes/tdd_claims")
       .then((res) => {
         this.setState({ values: res.data });
       })
       .catch((err) => console.log(err)); */
-      this.setState({
-        values: [
+        var tdd_values = [
           {
             label: "Improves Code Quality",
             value: "Improves Code Quality",
@@ -104,9 +104,14 @@ export default class SearchForm extends Component {
             label: "Improves Team Confidence",
             value: "Improves Team Confidence",
           },
-        ],
-      });
+        ];
+        array.concat(tdd_values);
     }
+    this.randomFunc(array);
+  }
+
+  randomFunc = (array) => {
+    this.setState({available_claims : array})
   }
 
   handleChange(e) {
@@ -121,10 +126,16 @@ export default class SearchForm extends Component {
   };
 
   handleSelectNameChange = (selected_SE_Practice) => {
-    this.setState({ name_of_field: selected_SE_Practice }, () =>
+    var joinSEPractices = this.state.selected_se_practices.concat(selected_SE_Practice);
+    this.setState({ selected_se_practices: joinSEPractices }, () =>
       this.populateValues()
     );
   };
+
+  handleSelectedClaims = (selected_claim) => {
+    var joinClaims = this.state.selected_claims.concat(selected_claim);
+    this.setState({ selected_claims: joinClaims });
+  }
 
   myCallback = (datafromDateSlider) => {
     this.setState({ from_date: datafromDateSlider[0] }, () => {
@@ -170,11 +181,13 @@ export default class SearchForm extends Component {
               <form noValidate onSubmit={this.onSubmit}>
                 <SearchQuery
                   values={this.state.values}
-                  selected_value={this.state.selected_value}
-                  name_of_field={this.state.name_of_field}
+                  selected_claims={this.state.selected_claims}
+                  selected_se_practices={this.state.selected_se_practices}
                   handleChange={this.handleChange}
                   handleFieldNameChange={this.handleFieldNameChange}
                   handleSelectNameChange={this.handleSelectNameChange}
+                  handleSelectedClaims={this.handleSelectedClaims}
+                  available_claims={this.state.available_claims}
                   research_methodology={this.state.research_methodology}
                 />
                 <DateSlider

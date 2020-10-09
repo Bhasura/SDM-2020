@@ -49,27 +49,8 @@ const SearchQuery = (props) => {
     <Paper className={classes.PaperBack} elevation={7} variant="outlined">
       <Grid container direction="row">
         <Grid item>
-          <FormControl className={classes.formControl}>
-            {/* <InputLabel
-              className={classes.GreenSeer}
-              id="demo-simple-select-outlined-label"
-            >
-              SE Practice
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={props.name_of_field || ""}
-              onClick={props.handleFieldNameChange}
-              label="Name of Field"
-              name="name_of_field"
-            >
-              <MenuItem value={"TDD"}>TDD</MenuItem>
-              <MenuItem value={"Agile"}>Agile</MenuItem>
-            </Select> */}
-          </FormControl>
-
           <Autocomplete
+            className={classes.formControl}
             id="combo-box-demo"
             options={SE_Practices}
             style={{ width: 150 }}
@@ -85,6 +66,26 @@ const SearchQuery = (props) => {
             name="name_of_field"
             renderInput={(params) => (
               <TextField {...params} label="SE Practice" variant="outlined" />
+            )}
+          />
+
+          <Autocomplete
+            className={classes.formControl}
+            id="combo-box-demo"
+            options={props.available_claims}
+            style={{ width: 150 }}
+            value={value}
+            inputValue={inputValue}
+            onChange={(event, newValue) => {
+              props.handleSelectedClaims(newValue);
+              setValue(newValue);
+            }}
+            onInputChange={(event, newInputValue) => {
+              setInputValue(newInputValue);
+            }}
+            name="claims"
+            renderInput={(params) => (
+              <TextField {...params} label="Claims" variant="outlined" />
             )}
           />
 
