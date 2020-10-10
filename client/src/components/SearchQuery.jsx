@@ -43,7 +43,7 @@ const SearchQuery = (props) => {
   const classes = useStyles();
   const SE_Practices = ["ALL", "TDD", "Agile"];
   const [se_practice, setSEPractice] = React.useState(props.available_se_practices[0]);
-  const [inputSEPractice, setInputSEPractice] = React.useState("");
+  const [inputSEPractice, setInputSEPractice] = React.useState(props.selected_se_practices);
   const [claim, setClaim] = React.useState(props.available_claims[0]);
   const [inputClaim, setInputClaim] = React.useState("");
 
@@ -87,7 +87,7 @@ const SearchQuery = (props) => {
             }}
             name="claims"
             renderInput={(params) => (
-              <TextField {...params} label="Claims" variant="outlined" />
+              <TextField {...params} label="Claim Benefits" variant="outlined" />
             )}
           />
 

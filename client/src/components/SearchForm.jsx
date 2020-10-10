@@ -121,13 +121,6 @@ export default class SearchForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  handleFieldNameChange = (e) => {
-    console.log(e);
-    this.setState({ [e.target.name]: e.target.value }, () =>
-      this.populateValues(),
-    );
-  };
-
   handleSelectNameChange = (selected_SE_Practice) => {
     var joinSEPractices = this.state.selected_se_practices.concat(selected_SE_Practice);
     this.setState({ selected_se_practices: joinSEPractices }, () =>
@@ -159,9 +152,8 @@ export default class SearchForm extends Component {
 
   clearFields = () => {
     return this.setState({
-      name_of_field: "",
-      claims: "",
-      selected_value: [],
+      selected_se_practices: [],
+      selected_claims: [],
       research_methodology: [],
     });
   };
