@@ -24,7 +24,8 @@ export default class SearchForm extends Component {
     super();
     this.state = {
       values: [],
-      available_claims: ["All Claim Benefits"],
+      available_se_practices: ["ALL", "TDD", "Agile"],
+      available_claims: ["ALL"],
       selected_claims: [],
       selected_se_practices: [],
       from_date: 2015,
@@ -74,7 +75,6 @@ export default class SearchForm extends Component {
     //not sure if claims is generic across all se_practices?
     console.log("before array")
     var array = [];
-
     if (this.state.selected_se_practices.includes("Agile")) {
         var values = [
           {
@@ -86,9 +86,10 @@ export default class SearchForm extends Component {
             value: "Claim 2",
           },
         ];
-        array.concat(values);
+        array = array.concat(values);
     }
     if (this.state.selected_se_practices.includes("TDD")) {
+      console.log("yes TDD");
       /*       axios
       .get("/record_attributes/tdd_claims")
       .then((res) => {
@@ -105,12 +106,14 @@ export default class SearchForm extends Component {
             value: "Improves Team Confidence",
           },
         ];
-        array.concat(tdd_values);
+        var tdd_values2 = ["Improves Code Quality", "Improves Team Confidence"];
+        array = array.concat(tdd_values2);
+        console.log(array);
     }
-    this.randomFunc(array);
+    this.setAvailableClaims(array);
   }
 
-  randomFunc = (array) => {
+  setAvailableClaims = (array) => {
     this.setState({available_claims : array})
   }
 
@@ -121,7 +124,7 @@ export default class SearchForm extends Component {
   handleFieldNameChange = (e) => {
     console.log(e);
     this.setState({ [e.target.name]: e.target.value }, () =>
-      this.populateValues()
+      this.populateValues(),
     );
   };
 
@@ -180,13 +183,12 @@ export default class SearchForm extends Component {
             <Grid item xs={12} sm={8}>
               <form noValidate onSubmit={this.onSubmit}>
                 <SearchQuery
-                  values={this.state.values}
                   selected_claims={this.state.selected_claims}
                   selected_se_practices={this.state.selected_se_practices}
                   handleChange={this.handleChange}
-                  handleFieldNameChange={this.handleFieldNameChange}
                   handleSelectNameChange={this.handleSelectNameChange}
                   handleSelectedClaims={this.handleSelectedClaims}
+                  available_se_practices={this.state.available_se_practices}
                   available_claims={this.state.available_claims}
                   research_methodology={this.state.research_methodology}
                 />

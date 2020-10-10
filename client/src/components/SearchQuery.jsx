@@ -41,10 +41,12 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchQuery = (props) => {
   const classes = useStyles();
-
   const SE_Practices = ["ALL", "TDD", "Agile"];
-  const [value, setValue] = React.useState(SE_Practices[0]);
-  const [inputValue, setInputValue] = React.useState("");
+  const [se_practice, setSEPractice] = React.useState(props.available_se_practices[0]);
+  const [inputSEPractice, setInputSEPractice] = React.useState("");
+  const [claim, setClaim] = React.useState(props.available_claims[0]);
+  const [inputClaim, setInputClaim] = React.useState("");
+
   return (
     <Paper className={classes.PaperBack} elevation={7} variant="outlined">
       <Grid container direction="row">
@@ -54,14 +56,14 @@ const SearchQuery = (props) => {
             id="combo-box-demo"
             options={SE_Practices}
             style={{ width: 150 }}
-            value={value}
-            inputValue={inputValue}
-            onChange={(event, newValue) => {
-              props.handleSelectNameChange(newValue);
-              setValue(newValue);
+            value={se_practice}
+            inputValue={inputSEPractice}
+            onChange={(event, newSEPractice) => {
+              props.handleSelectNameChange(newSEPractice);
+              setSEPractice(newSEPractice);
             }}
-            onInputChange={(event, newInputValue) => {
-              setInputValue(newInputValue);
+            onInputChange={(event, newSEPracticeInputValue) => {
+              setInputSEPractice(newSEPracticeInputValue);
             }}
             name="name_of_field"
             renderInput={(params) => (
@@ -74,14 +76,14 @@ const SearchQuery = (props) => {
             id="combo-box-demo"
             options={props.available_claims}
             style={{ width: 150 }}
-            value={value}
-            inputValue={inputValue}
-            onChange={(event, newValue) => {
-              props.handleSelectedClaims(newValue);
-              setValue(newValue);
+            value={claim}
+            inputValue={inputClaim}
+            onChange={(event, newClaim) => {
+              props.handleSelectedClaims(newClaim);
+              setClaim(newClaim);
             }}
-            onInputChange={(event, newInputValue) => {
-              setInputValue(newInputValue);
+            onInputChange={(event, newClaimInputValue) => {
+              setInputClaim(newClaimInputValue);
             }}
             name="claims"
             renderInput={(params) => (
@@ -89,7 +91,7 @@ const SearchQuery = (props) => {
             )}
           />
 
-          <FormControl className={classes.formControl}>
+{/*           <FormControl className={classes.formControl}>
             <InputLabel
               id="demo-mutiple-chip-label"
               className={classes.GreenSeer}
@@ -118,7 +120,7 @@ const SearchQuery = (props) => {
                 </MenuItem>
               ))}
             </Select>
-          </FormControl>
+          </FormControl> */}
 
           <FormControl className={classes.formControl}>
             <InputLabel
