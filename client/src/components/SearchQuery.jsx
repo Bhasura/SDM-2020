@@ -41,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchQuery = (props) => {
   const classes = useStyles();
-  const SE_Practices = ["ALL", "TDD", "Agile"];
   const [se_practice, setSEPractice] = React.useState(props.available_se_practices[0]);
   const [inputSEPractice, setInputSEPractice] = React.useState(props.selected_se_practices);
   const [claim, setClaim] = React.useState(props.available_claims[0]);
@@ -54,7 +53,7 @@ const SearchQuery = (props) => {
           <Autocomplete
             className={classes.formControl}
             id="combo-box-demo"
-            options={SE_Practices}
+            options={props.available_se_practices}
             style={{ width: 150 }}
             value={se_practice}
             inputValue={inputSEPractice}
@@ -90,37 +89,6 @@ const SearchQuery = (props) => {
               <TextField {...params} label="Claim Benefits" variant="outlined" />
             )}
           />
-
-{/*           <FormControl className={classes.formControl}>
-            <InputLabel
-              id="demo-mutiple-chip-label"
-              className={classes.GreenSeer}
-            >
-              Claims
-            </InputLabel>
-            <Select
-              labelId="demo-mutiple-chip-label"
-              id="demo-mutiple-chip"
-              multiple
-              value={props.selected_value}
-              onChange={props.handleChange}
-              name="selected_value"
-              input={<Input id="select-multiple-chip" />}
-              renderValue={(selected) => (
-                <div>
-                  {selected.map((value) => (
-                    <Chip key={value} label={value} />
-                  ))}
-                </div>
-              )}
-            >
-              {props.values.map((p, index) => (
-                <MenuItem key={index} value={p.value}>
-                  {p.value}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl> */}
 
           <FormControl className={classes.formControl}>
             <InputLabel

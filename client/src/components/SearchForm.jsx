@@ -122,6 +122,8 @@ export default class SearchForm extends Component {
   }
 
   handleSelectNameChange = (selected_SE_Practice) => {
+    this.clearRecords();
+    this.clearFields();
     var joinSEPractices = this.state.selected_se_practices.concat(selected_SE_Practice);
     this.setState({ selected_se_practices: joinSEPractices }, () =>
       this.populateValues()
