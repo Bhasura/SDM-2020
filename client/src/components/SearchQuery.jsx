@@ -36,7 +36,7 @@ const SearchQuery = (props) => {
   return (
     <Paper className={classes.PaperBack} elevation={7} variant="outlined">
       <Grid container direction="row">
-        <Grid item> 
+        <Grid item item xs={12} sm={12}> 
           <Autocomplete
             className={classes.formControl}
             multiple
