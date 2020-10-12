@@ -73,7 +73,7 @@ const SearchQuery = (props) => {
               <TextField
                 {...params}
                 variant="outlined"
-                label="SE Practices"
+                label="Claim Benefits"
                 placeholder="Favorites"
               />
             )}
@@ -94,7 +94,7 @@ const SearchQuery = (props) => {
               <TextField
                 {...params}
                 variant="outlined"
-                label="SE Practices"
+                label="Research Methodology"
                 placeholder="Favorites"
               />
             )}
