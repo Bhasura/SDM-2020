@@ -10,6 +10,16 @@ records.get("/records", function (req, res) {
   research_methodology = req.query.research_methodology;
   se_practice = req.query.se_practice;
 
+  if (se_practice === undefined || se_practice.includes("ALL")) {
+    se_practice = ["TDD", "Agile"];
+  }
+  if (claims === undefined || claims.includes("ALL")) {
+    claims = ["Improves Code Quality", "Improves Team Confidence"];
+  }
+  if (research_methodology === undefined || research_methodology.includes("ALL")) {
+    research_methodology = ["Case Study", "Survey"];
+  }
+
   console.log(se_practice);
   console.log(claims);
   console.log(research_methodology);
