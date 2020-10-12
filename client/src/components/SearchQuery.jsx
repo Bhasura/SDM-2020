@@ -41,10 +41,14 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchQuery = (props) => {
   const classes = useStyles();
-  const [se_practice, setSEPractice] = React.useState(props.available_se_practices[0]);
-  const [inputSEPractice, setInputSEPractice] = React.useState(props.selected_se_practices);
+  const [se_practice, setSEPractice] = React.useState(
+    props.available_se_practices[0]
+  );
+  const [inputSEPractice, setInputSEPractice] = React.useState(
+    props.selected_se_practices
+  );
   const [claim, setClaim] = React.useState(props.available_claims[0]);
-  const [inputClaim, setInputClaim] = React.useState("");
+  const [inputClaim, setInputClaim] = React.useState(props.selected_claims);
 
   return (
     <Paper className={classes.PaperBack} elevation={7} variant="outlined">
@@ -52,24 +56,26 @@ const SearchQuery = (props) => {
         <Grid item>
           <Autocomplete
             className={classes.formControl}
-            id="combo-box-demo"
+            multiple
+            id="tags-outlined"
             options={props.available_se_practices}
-            style={{ width: 150 }}
-            value={se_practice}
-            inputValue={inputSEPractice}
+            getOptionLabel={(option) => option}
+            defaultValue={[props.available_se_practices[0]]}
+            filterSelectedOptions
             onChange={(event, newSEPractice) => {
               props.handleSelectNameChange(newSEPractice);
               setSEPractice(newSEPractice);
+              console.log(newSEPractice);
             }}
-            onInputChange={(event, newSEPracticeInputValue) => {
-              setInputSEPractice(newSEPracticeInputValue);
-            }}
-            name="name_of_field"
             renderInput={(params) => (
-              <TextField {...params} label="SE Practice" variant="outlined" />
+              <TextField
+                {...params}
+                variant="outlined"
+                label="SE Practices"
+                placeholder="Favorites"
+              />
             )}
           />
-
           <Autocomplete
             className={classes.formControl}
             id="combo-box-demo"
@@ -86,7 +92,11 @@ const SearchQuery = (props) => {
             }}
             name="claims"
             renderInput={(params) => (
-              <TextField {...params} label="Claim Benefits" variant="outlined" />
+              <TextField
+                {...params}
+                label="Claim Benefits"
+                variant="outlined"
+              />
             )}
           />
 

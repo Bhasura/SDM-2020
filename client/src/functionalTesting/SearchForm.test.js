@@ -48,20 +48,7 @@ beforeEach(() => {
 
 describe("handleChange", () => {
   it("should call setState on selected_se_practice", () => {
-    const mockEvent = "TDD";
-    const expected = {
-      /* available_claims: ["ALL", "Improves Code Quality", "Improves Team Confidence"],
-      available_se_practices: ["ALL", "TDD", "Agile"],
-      values: [],
-      selected_claims: [], */
-      //selected_se_practices: ["TDD"],
-      /* from_date: 2015,
-      to_date: 2020,
-      records: [],
-      research_methodology: [],
-      cancelButtonPressed: false,
-      submitButtonPressed: false, */
-    };
+    const mockEvent = ["TDD"];
     wrapper.instance().handleSelectNameChange(mockEvent);
     //expect(wrapper.state("selected_se_practices")).toEqual(expected);
     expect(wrapper.state("selected_se_practices")).toEqual(["TDD"]);

@@ -34,10 +34,12 @@ export default class SearchForm extends Component {
       records: [],
       cancelButtonPressed: false,
       submitButtonPressed: false,
+
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
+ 
   onSubmit = (e) => {
     e.preventDefault();
     this.handleChange(e);
@@ -76,17 +78,13 @@ export default class SearchForm extends Component {
     console.log("before array")
     var array = [];
     if (this.state.selected_se_practices.includes("Agile")) {
-        var values = [
-          {
-            label: "Claim 1",
-            value: "Claim 1",
-          },
-          {
-            label: "Claim 2",
-            value: "Claim 2",
-          },
-        ];
-        array = array.concat(values);
+      
+        var tdd_values1 = ["Claim 1", "Claim 2"];
+        array = array.concat(tdd_values1);
+        console.log(array);
+        console.log(this.state.selected_se_practices);
+      
+       
     }
     if (this.state.selected_se_practices.includes("TDD")) {
       console.log("yes TDD");
@@ -96,19 +94,12 @@ export default class SearchForm extends Component {
         this.setState({ values: res.data });
       })
       .catch((err) => console.log(err)); */
-        var tdd_values = [
-          {
-            label: "Improves Code Quality",
-            value: "Improves Code Quality",
-          },
-          {
-            label: "Improves Team Confidence",
-            value: "Improves Team Confidence",
-          },
-        ];
+     
         var tdd_values2 = ["Improves Code Quality", "Improves Team Confidence"];
         array = array.concat(tdd_values2);
         console.log(array);
+        console.log(this.state.selected_se_practices);
+
     }
     this.setAvailableClaims(array);
   }
@@ -124,8 +115,8 @@ export default class SearchForm extends Component {
   handleSelectNameChange = (selected_SE_Practice) => {
     this.clearRecords();
     this.clearFields();
-    var joinSEPractices = this.state.selected_se_practices.concat(selected_SE_Practice);
-    this.setState({ selected_se_practices: joinSEPractices }, () =>
+    //var joinSEPractices = this.state.selected_se_practices.concat(selected_SE_Practice);
+    this.setState({ selected_se_practices: selected_SE_Practice }, () =>
       this.populateValues()
     );
   };
