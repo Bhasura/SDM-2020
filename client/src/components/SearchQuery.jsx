@@ -42,9 +42,6 @@ const useStyles = makeStyles((theme) => ({
 const SearchQuery = (props) => {
   const classes = useStyles();
 
-  const [claim, setClaim] = React.useState(props.available_claims[0]);
-  const [inputClaim, setInputClaim] = React.useState(props.selected_claims);
-
   return (
     <Paper className={classes.PaperBack} elevation={7} variant="outlined">
       <Grid container direction="row">
@@ -72,24 +69,22 @@ const SearchQuery = (props) => {
           />
           <Autocomplete
             className={classes.formControl}
-            id="combo-box-demo"
+            multiple
+            id="tags-outlined"
             options={props.available_claims}
-            style={{ width: 150 }}
-            value={claim}
-            inputValue={inputClaim}
-            onChange={(event, newClaim) => {
-              props.handleSelectedClaims(newClaim);
-              setClaim(newClaim);
+            getOptionLabel={(option) => option}
+            defaultValue={[props.available_claims[0]]}
+            filterSelectedOptions
+            onChange={(event, newSEPractice) => {
+              props.handleSelectedClaims(newSEPractice);
+              console.log(newSEPractice);
             }}
-            onInputChange={(event, newClaimInputValue) => {
-              setInputClaim(newClaimInputValue);
-            }}
-            name="claims"
             renderInput={(params) => (
               <TextField
                 {...params}
-                label="Claim Benefits"
                 variant="outlined"
+                label="SE Practices"
+                placeholder="Favorites"
               />
             )}
           />
