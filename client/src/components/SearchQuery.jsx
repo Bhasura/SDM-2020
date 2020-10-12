@@ -25,7 +25,8 @@ const useStyles = makeStyles((theme) => ({
   },
   PaperBack: {
     backgroundColor: "#D8F3DC",
-    width: 600,
+    width: 700,
+    marginBottom: 10
   },
 }));
 
@@ -35,7 +36,7 @@ const SearchQuery = (props) => {
   return (
     <Paper className={classes.PaperBack} elevation={7} variant="outlined">
       <Grid container direction="row">
-        <Grid item>
+        <Grid item> 
           <Autocomplete
             className={classes.formControl}
             multiple
@@ -53,7 +54,7 @@ const SearchQuery = (props) => {
                 {...params}
                 variant="outlined"
                 label="SE Practices"
-                placeholder="Favorites"
+                placeholder=""
               />
             )}
           />
@@ -74,7 +75,7 @@ const SearchQuery = (props) => {
                 {...params}
                 variant="outlined"
                 label="Claim Benefits"
-                placeholder="Favorites"
+                placeholder=""
               />
             )}
           />
@@ -95,7 +96,7 @@ const SearchQuery = (props) => {
                 {...params}
                 variant="outlined"
                 label="Research Methodology"
-                placeholder="Favorites"
+                placeholder=""
               />
             )}
           />

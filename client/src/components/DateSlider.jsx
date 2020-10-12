@@ -13,7 +13,8 @@ const CustomPaper = withStyles({
   root : {
     backgroundColor: "#D8F3DC",
     //width: 800
-    width: 700
+    width: 700,
+    marginBottom: 10
   },
 })(Paper)
 
