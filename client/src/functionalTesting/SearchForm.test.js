@@ -66,7 +66,8 @@ describe("handleChange", () => {
       from_date: 2015,
       to_date: 2020,
       records: [],
-      research_methodology: [],
+      available_research_methodologys: ["ALL", "Case Study", "Survey"],
+      selected_research_methodology: [],
       cancelButtonPressed: false,
       submitButtonPressed: false,
     };
@@ -127,7 +128,8 @@ describe("onCancel", () => {
       from_date: 2015,
       to_date: 2020,
       records: [],
-      research_methodology: [],
+      available_research_methodologys: ["ALL", "Case Study", "Survey"],
+      selected_research_methodology: [],
       cancelButtonPressed: true,
       submitButtonPressed: false,
     };
