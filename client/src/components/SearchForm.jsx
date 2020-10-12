@@ -30,16 +30,15 @@ export default class SearchForm extends Component {
       selected_se_practices: [],
       from_date: 2015,
       to_date: 2020,
-      research_methodology: [],
+      available_research_methodologys: ["ALL", "Case Study", "Survey"],
+      selected_research_methodology: [],
       records: [],
       cancelButtonPressed: false,
       submitButtonPressed: false,
-
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
- 
   onSubmit = (e) => {
     e.preventDefault();
     this.handleChange(e);
@@ -62,7 +61,7 @@ export default class SearchForm extends Component {
           from_date: this.state.from_date,
           to_date: this.state.to_date,
           claims: this.state.selected_claims,
-          research_methodology: this.state.research_methodology,
+          research_methodology: this.state.selected_research_methodology,
         },
       })
       .then((res) => {
@@ -75,16 +74,13 @@ export default class SearchForm extends Component {
 
   populateValues() {
     //not sure if claims is generic across all se_practices?
-    console.log("before array")
+    console.log("before array");
     var array = [];
     if (this.state.selected_se_practices.includes("Agile")) {
-      
-        var tdd_values1 = ["Claim 1", "Claim 2"];
-        array = array.concat(tdd_values1);
-        console.log(array);
-        console.log(this.state.selected_se_practices);
-      
-       
+      var tdd_values1 = ["Claim 1", "Claim 2"];
+      array = array.concat(tdd_values1);
+      console.log(array);
+      console.log(this.state.selected_se_practices);
     }
     if (this.state.selected_se_practices.includes("TDD")) {
       console.log("yes TDD");
@@ -94,20 +90,21 @@ export default class SearchForm extends Component {
         this.setState({ values: res.data });
       })
       .catch((err) => console.log(err)); */
-     
-        var tdd_values2 = ["Improves Code Quality", "Improves Team Confidence"];
-        array = array.concat(tdd_values2);
-        console.log(array);
-        console.log(this.state.selected_se_practices);
 
+      var tdd_values2 = ["Improves Code Quality", "Improves Team Confidence"];
+      array = array.concat(tdd_values2);
+      console.log(array);
+      console.log(this.state.selected_se_practices);
     }
     this.setAvailableClaims(array);
   }
 
   setAvailableClaims = (array) => {
-    this.setState({available_claims : array})
-  }
-
+    this.setState({ available_claims: array });
+  };
+  handleSelectMethodologyChange = (selected_methodology) => {
+    this.setState({ selected_research_methodology: selected_methodology });
+  };
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -124,7 +121,7 @@ export default class SearchForm extends Component {
   handleSelectedClaims = (selected_claim) => {
     var joinClaims = this.state.selected_claims.concat(selected_claim);
     this.setState({ selected_claims: joinClaims });
-  }
+  };
 
   myCallback = (datafromDateSlider) => {
     this.setState({ from_date: datafromDateSlider[0] }, () => {
@@ -173,8 +170,14 @@ export default class SearchForm extends Component {
                   handleChange={this.handleChange}
                   handleSelectNameChange={this.handleSelectNameChange}
                   handleSelectedClaims={this.handleSelectedClaims}
+                  handleSelectMethodologyChange={
+                    this.handleSelectMethodologyChange
+                  }
                   available_se_practices={this.state.available_se_practices}
                   available_claims={this.state.available_claims}
+                  available_research_methodologys={
+                    this.state.available_research_methodologys
+                  }
                   research_methodology={this.state.research_methodology}
                 />
                 <DateSlider

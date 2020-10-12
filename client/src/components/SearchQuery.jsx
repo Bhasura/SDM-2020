@@ -1,15 +1,5 @@
 import React from "react";
-import {
-  Select,
-  MenuItem,
-  Paper,
-  Grid,
-  FormControl,
-  InputLabel,
-  Input,
-  Chip,
-  TextField,
-} from "@material-ui/core";
+import { Paper, Grid, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
@@ -88,34 +78,27 @@ const SearchQuery = (props) => {
               />
             )}
           />
-
-          <FormControl className={classes.formControl}>
-            <InputLabel
-              id="demo-mutiple-chip-label"
-              className={classes.GreenSeer}
-            >
-              Methodology
-            </InputLabel>
-            <Select
-              labelId="demo-mutiple-chip-label"
-              id="demo-mutiple-chip"
-              multiple
-              value={props.research_methodology}
-              onChange={props.handleChange}
-              name="research_methodology"
-              input={<Input id="select-multiple-chip" />}
-              renderValue={(selected) => (
-                <div>
-                  {selected.map((value) => (
-                    <Chip key={value} label={value} />
-                  ))}
-                </div>
-              )}
-            >
-              <MenuItem value={"Case Study"}>Case Study</MenuItem>
-              <MenuItem value={"Survey"}>Survey</MenuItem>
-            </Select>
-          </FormControl>
+          <Autocomplete
+            className={classes.formControl}
+            multiple
+            id="tags-outlined"
+            options={props.available_research_methodologys}
+            getOptionLabel={(option) => option}
+            defaultValue={[props.available_research_methodologys[0]]}
+            filterSelectedOptions
+            onChange={(event, newSEPractice) => {
+              props.handleSelectMethodologyChange(newSEPractice);
+              console.log(newSEPractice);
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                variant="outlined"
+                label="SE Practices"
+                placeholder="Favorites"
+              />
+            )}
+          />
         </Grid>
       </Grid>
     </Paper>
