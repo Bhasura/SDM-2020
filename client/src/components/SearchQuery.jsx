@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   PaperBack: {
     backgroundColor: "#D8F3DC",
     width: 700,
-    marginBottom: 10
+    marginBottom: 10,
   },
 }));
 
@@ -36,7 +36,7 @@ const SearchQuery = (props) => {
   return (
     <Paper className={classes.PaperBack} elevation={7} variant="outlined">
       <Grid container direction="row">
-        <Grid item xs={12} sm={12}> 
+        <Grid item xs={12} sm={12}>
           <Autocomplete
             className={classes.formControl}
             multiple
@@ -58,6 +58,7 @@ const SearchQuery = (props) => {
               />
             )}
           />
+
           <Autocomplete
             className={classes.formControl}
             multiple
@@ -66,9 +67,9 @@ const SearchQuery = (props) => {
             getOptionLabel={(option) => option}
             defaultValue={[props.available_claims[0]]}
             filterSelectedOptions
-            onChange={(event, newSEPractice) => {
-              props.handleSelectedClaims(newSEPractice);
-              console.log(newSEPractice);
+            onChange={(event, newClaimBenefit) => {
+              props.handleSelectedClaims(newClaimBenefit);
+              console.log(newClaimBenefit);
             }}
             renderInput={(params) => (
               <TextField
@@ -79,6 +80,7 @@ const SearchQuery = (props) => {
               />
             )}
           />
+
           <Autocomplete
             className={classes.formControl}
             multiple

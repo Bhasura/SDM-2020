@@ -25,7 +25,13 @@ export default class SearchForm extends Component {
     this.state = {
       values: [],
       available_se_practices: ["ALL", "TDD", "Agile"],
-      available_claims: ["ALL"],
+      available_claims: [
+        "ALL",
+        "Agile-Claim 1",
+        "Agile-Claim 2",
+        "TDD-Improves Code Quality",
+        "TDD-Improves Team Confidence",
+      ],
       selected_claims: [],
       selected_se_practices: [],
       from_date: 2015,
@@ -73,17 +79,22 @@ export default class SearchForm extends Component {
   };
 
   populateValues() {
-    //not sure if claims is generic across all se_practices?
-    console.log("before array");
     var array = [];
+    if (this.state.selected_se_practices.includes("ALL")) {
+      var values = [
+        "ALL",
+        "Agile-Claim 1",
+        "Agile-Claim 2",
+        "TDD-Improves Code Quality",
+        "TDD-Improves Team Confidence",
+      ];
+      array = array.concat(values);
+    }
     if (this.state.selected_se_practices.includes("Agile")) {
-      var tdd_values1 = ["Claim 1", "Claim 2"];
+      var tdd_values1 = ["ALL", "Agile-Claim 1", "Agile-Claim 2"];
       array = array.concat(tdd_values1);
-      console.log(array);
-      console.log(this.state.selected_se_practices);
     }
     if (this.state.selected_se_practices.includes("TDD")) {
-      console.log("yes TDD");
       /*       axios
       .get("/record_attributes/tdd_claims")
       .then((res) => {
@@ -91,11 +102,15 @@ export default class SearchForm extends Component {
       })
       .catch((err) => console.log(err)); */
 
-      var tdd_values2 = ["Improves Code Quality", "Improves Team Confidence"];
+      var tdd_values2 = [
+        "ALL",
+        "TDD-Improves Code Quality",
+        "TDD-Improves Team Confidence",
+      ];
       array = array.concat(tdd_values2);
-      console.log(array);
-      console.log(this.state.selected_se_practices);
     }
+    var uniqueSet = new Set(array);
+    array = [...uniqueSet];
     this.setAvailableClaims(array);
   }
 
@@ -120,6 +135,7 @@ export default class SearchForm extends Component {
 
   handleSelectedClaims = (selected_claim) => {
     var joinClaims = this.state.selected_claims.concat(selected_claim);
+    console.log(joinClaims);
     this.setState({ selected_claims: joinClaims });
   };
 
