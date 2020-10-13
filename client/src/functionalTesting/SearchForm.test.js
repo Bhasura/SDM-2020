@@ -58,7 +58,11 @@ describe("handleChange", () => {
     const mockEvent = "Improves Code Quality";
       
     const expected = {
-      available_claims: ["ALL"],
+      available_claims: ["ALL",
+      "Agile-Claim 1",
+      "Agile-Claim 2",
+      "TDD-Improves Code Quality",
+      "TDD-Improves Team Confidence",],
       available_se_practices: ["ALL", "TDD", "Agile"],
       values: [],
       selected_claims: ["Improves Code Quality"],
@@ -120,7 +124,11 @@ describe("onCancel", () => {
 
   it("should clear fields on cancel", () => {
     const expected = {
-      available_claims: ["ALL"],
+      available_claims: ["ALL",
+      "Agile-Claim 1",
+      "Agile-Claim 2",
+      "TDD-Improves Code Quality",
+      "TDD-Improves Team Confidence",],
       available_se_practices: ["ALL", "TDD", "Agile"],
       values: [],
       selected_claims: [],
