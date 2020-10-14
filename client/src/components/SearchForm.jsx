@@ -134,9 +134,7 @@ export default class SearchForm extends Component {
   };
 
   handleSelectedClaims = (selected_claim) => {
-    var joinClaims = this.state.selected_claims.concat(selected_claim);
-    console.log(joinClaims);
-    this.setState({ selected_claims: joinClaims });
+    this.setState({ selected_claims: selected_claim });
   };
 
   myCallback = (datafromDateSlider) => {
