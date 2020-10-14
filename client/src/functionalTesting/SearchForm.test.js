@@ -55,7 +55,7 @@ describe("handleChange", () => {
   });
 
   it("should call setState on selected_claim", () => {
-    const mockEvent = "Improves Code Quality";
+    const mockEvent = ["Improves Code Quality"];
       
     const expected = {
       available_claims: ["ALL",
