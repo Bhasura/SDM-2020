@@ -27,8 +27,7 @@ export default class SearchForm extends Component {
       available_se_practices: ["ALL", "TDD", "Agile"],
       available_claims: [
         "ALL",
-        "Agile-Claim 1",
-        "Agile-Claim 2",
+        "Agile-Increases Productivity",
         "TDD-Improves Code Quality",
         "TDD-Improves Team Confidence",
       ],
@@ -83,15 +82,14 @@ export default class SearchForm extends Component {
     if (this.state.selected_se_practices.includes("ALL")) {
       var values = [
         "ALL",
-        "Agile-Claim 1",
-        "Agile-Claim 2",
+        "Agile-Increases Productivity",
         "TDD-Improves Code Quality",
         "TDD-Improves Team Confidence",
       ];
       array = array.concat(values);
     }
     if (this.state.selected_se_practices.includes("Agile")) {
-      var tdd_values1 = ["ALL", "Agile-Claim 1", "Agile-Claim 2"];
+      var tdd_values1 = ["ALL", "Agile-Increases Productivity"];
       array = array.concat(tdd_values1);
     }
     if (this.state.selected_se_practices.includes("TDD")) {
@@ -117,9 +115,14 @@ export default class SearchForm extends Component {
   setAvailableClaims = (array) => {
     this.setState({ available_claims: array });
   };
+
   handleSelectMethodologyChange = (selected_methodology) => {
+    if(selected_methodology.includes("ALL") && selected_methodology.length !== 1) {
+      selected_methodology.shift();
+    }
     this.setState({ selected_research_methodology: selected_methodology });
   };
+
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -127,13 +130,18 @@ export default class SearchForm extends Component {
   handleSelectNameChange = (selected_SE_Practice) => {
     this.clearRecords();
     this.clearFields();
-    //var joinSEPractices = this.state.selected_se_practices.concat(selected_SE_Practice);
+    if(selected_SE_Practice.includes("ALL") && selected_SE_Practice.length !== 1) {
+      selected_SE_Practice.shift();
+    }
     this.setState({ selected_se_practices: selected_SE_Practice }, () =>
       this.populateValues()
     );
   };
 
   handleSelectedClaims = (selected_claim) => {
+    if(selected_claim.includes("ALL") && selected_claim.length !== 1) {
+      selected_claim.shift();
+    }
     this.setState({ selected_claims: selected_claim });
   };
 
