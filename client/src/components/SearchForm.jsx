@@ -23,14 +23,21 @@ export default class SearchForm extends Component {
   constructor() {
     super();
     this.state = {
-      se_practice: "",
       values: [],
-      selected_value: [],
-      name_of_field: "",
+      available_se_practices: ["ALL", "TDD", "Agile"],
+      available_claims: [
+        "ALL",
+        "Agile-Claim 1",
+        "Agile-Claim 2",
+        "TDD-Improves Code Quality",
+        "TDD-Improves Team Confidence",
+      ],
+      selected_claims: [],
+      selected_se_practices: [],
       from_date: 2015,
       to_date: 2020,
-      claims: "",
-      research_methodology: [],
+      available_research_methodologys: ["ALL", "Case Study", "Survey"],
+      selected_research_methodology: [],
       records: [],
       cancelButtonPressed: false,
       submitButtonPressed: false,
@@ -56,11 +63,11 @@ export default class SearchForm extends Component {
     return axios
       .get("/records", {
         params: {
-          se_practice: this.state.selected_value,
+          se_practice: this.state.selected_se_practices,
           from_date: this.state.from_date,
           to_date: this.state.to_date,
-          claims: this.state.selected_value,
-          research_methodology: this.state.research_methodology,
+          claims: this.state.selected_claims,
+          research_methodology: this.state.selected_research_methodology,
         },
       })
       .then((res) => {
@@ -72,52 +79,62 @@ export default class SearchForm extends Component {
   };
 
   populateValues() {
-    //not sure if claims is generic across all se_practices?
-    if (this.state.name_of_field === "Agile") {
-      this.setState({
-        values: [
-          {
-            label: "Claim 1",
-            value: "Claim 1",
-          },
-          {
-            label: "Claim 2",
-            value: "Claim 2",
-          },
-        ],
-      });
+    var array = [];
+    if (this.state.selected_se_practices.includes("ALL")) {
+      var values = [
+        "ALL",
+        "Agile-Claim 1",
+        "Agile-Claim 2",
+        "TDD-Improves Code Quality",
+        "TDD-Improves Team Confidence",
+      ];
+      array = array.concat(values);
     }
-    if (this.state.name_of_field === "TDD") {
+    if (this.state.selected_se_practices.includes("Agile")) {
+      var tdd_values1 = ["ALL", "Agile-Claim 1", "Agile-Claim 2"];
+      array = array.concat(tdd_values1);
+    }
+    if (this.state.selected_se_practices.includes("TDD")) {
       /*       axios
       .get("/record_attributes/tdd_claims")
       .then((res) => {
         this.setState({ values: res.data });
       })
       .catch((err) => console.log(err)); */
-      this.setState({
-        values: [
-          {
-            label: "Improves Code Quality",
-            value: "Improves Code Quality",
-          },
-          {
-            label: "Improves Team Confidence",
-            value: "Improves Team Confidence",
-          },
-        ],
-      });
+
+      var tdd_values2 = [
+        "ALL",
+        "TDD-Improves Code Quality",
+        "TDD-Improves Team Confidence",
+      ];
+      array = array.concat(tdd_values2);
     }
+    var uniqueSet = new Set(array);
+    array = [...uniqueSet];
+    this.setAvailableClaims(array);
   }
 
+  setAvailableClaims = (array) => {
+    this.setState({ available_claims: array });
+  };
+  handleSelectMethodologyChange = (selected_methodology) => {
+    this.setState({ selected_research_methodology: selected_methodology });
+  };
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  handleFieldNameChange = (e) => {
-    this.setState(
-      { [e.target.name]: e.target.value },
-      () => this.populateValues()
+  handleSelectNameChange = (selected_SE_Practice) => {
+    this.clearRecords();
+    this.clearFields();
+    //var joinSEPractices = this.state.selected_se_practices.concat(selected_SE_Practice);
+    this.setState({ selected_se_practices: selected_SE_Practice }, () =>
+      this.populateValues()
     );
+  };
+
+  handleSelectedClaims = (selected_claim) => {
+    this.setState({ selected_claims: selected_claim });
   };
 
   myCallback = (datafromDateSlider) => {
@@ -139,12 +156,11 @@ export default class SearchForm extends Component {
 
   clearFields = () => {
     return this.setState({
-      name_of_field: "",
-      claims: "",
-      selected_value: [],
+      selected_se_practices: [],
+      selected_claims: [],
       research_methodology: [],
-    })
-  }
+    });
+  };
 
   cancelButtonPress = () => {
     this.setState({
@@ -163,11 +179,19 @@ export default class SearchForm extends Component {
             <Grid item xs={12} sm={8}>
               <form noValidate onSubmit={this.onSubmit}>
                 <SearchQuery
-                  values={this.state.values}
-                  selected_value={this.state.selected_value}
-                  name_of_field={this.state.name_of_field}
+                  selected_claims={this.state.selected_claims}
+                  selected_se_practices={this.state.selected_se_practices}
                   handleChange={this.handleChange}
-                  handleFieldNameChange={this.handleFieldNameChange}
+                  handleSelectNameChange={this.handleSelectNameChange}
+                  handleSelectedClaims={this.handleSelectedClaims}
+                  handleSelectMethodologyChange={
+                    this.handleSelectMethodologyChange
+                  }
+                  available_se_practices={this.state.available_se_practices}
+                  available_claims={this.state.available_claims}
+                  available_research_methodologys={
+                    this.state.available_research_methodologys
+                  }
                   research_methodology={this.state.research_methodology}
                 />
                 <DateSlider
@@ -197,8 +221,9 @@ export default class SearchForm extends Component {
         </Grid>
 
         {this.state.submitButtonPressed && !this.state.cancelButtonPressed && (
-          <EnhancedTable rows={this.state.records}/>
+          <EnhancedTable rows={this.state.records} />
         )}
       </div>
-    )}
+    );
   }
+}

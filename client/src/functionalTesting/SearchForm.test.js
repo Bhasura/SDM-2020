@@ -47,30 +47,40 @@ beforeEach(() => {
 });
 
 describe("handleChange", () => {
-  it("should call setState on se_practice", () => {
-    const mockEvent = {
-      target: {
-        name: "se_practice",
-        value: "TDD",
-      },
-    };
+  it("should call setState on selected_se_practice", () => {
+    const mockEvent = ["TDD"];
+    wrapper.instance().handleSelectNameChange(mockEvent);
+    //expect(wrapper.state("selected_se_practices")).toEqual(expected);
+    expect(wrapper.state("selected_se_practices")).toEqual(["TDD"]);
+  });
+
+  it("should call setState on selected_claim", () => {
+    const mockEvent = ["Improves Code Quality"];
+      
     const expected = {
-      se_practice: "TDD",
+      available_claims: ["ALL",
+      "Agile-Claim 1",
+      "Agile-Claim 2",
+      "TDD-Improves Code Quality",
+      "TDD-Improves Team Confidence",],
+      available_se_practices: ["ALL", "TDD", "Agile"],
       values: [],
-      selected_value: [],
-      name_of_field: "",
+      selected_claims: ["Improves Code Quality"],
+      selected_se_practices: [],
       from_date: 2015,
       to_date: 2020,
-      claims: "",
       records: [],
-      research_methodology: [],
+      available_research_methodologys: ["ALL", "Case Study", "Survey"],
+      selected_research_methodology: [],
       cancelButtonPressed: false,
       submitButtonPressed: false,
     };
-    wrapper.instance().handleChange(mockEvent);
+    wrapper.instance().handleSelectedClaims(mockEvent);
 
     expect(wrapper.state()).toEqual(expected);
   });
+  
+
 });
 
 describe("onSubmit", () => {
@@ -114,15 +124,20 @@ describe("onCancel", () => {
 
   it("should clear fields on cancel", () => {
     const expected = {
-      se_practice: "",
+      available_claims: ["ALL",
+      "Agile-Claim 1",
+      "Agile-Claim 2",
+      "TDD-Improves Code Quality",
+      "TDD-Improves Team Confidence",],
+      available_se_practices: ["ALL", "TDD", "Agile"],
       values: [],
-      selected_value: [],
-      name_of_field: "",
+      selected_claims: [],
+      selected_se_practices: [],
       from_date: 2015,
       to_date: 2020,
-      claims: "",
       records: [],
-      research_methodology: [],
+      available_research_methodologys: ["ALL", "Case Study", "Survey"],
+      selected_research_methodology: [],
       cancelButtonPressed: true,
       submitButtonPressed: false,
     };

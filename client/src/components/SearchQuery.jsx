@@ -1,22 +1,12 @@
 import React from "react";
-import {
-  Select,
-  MenuItem,
-  Paper,
-  Grid,
-  FormControl,
-  InputLabel,
-  Input,
-  Chip,
-} from "@material-ui/core";
+import { Paper, Grid, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 
-    120,
+    minWidth: 120,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -35,7 +25,8 @@ const useStyles = makeStyles((theme) => ({
   },
   PaperBack: {
     backgroundColor: "#D8F3DC",
-    width: 600,
+    width: 700,
+    marginBottom: 10,
   },
 }));
 
@@ -45,86 +36,72 @@ const SearchQuery = (props) => {
   return (
     <Paper className={classes.PaperBack} elevation={7} variant="outlined">
       <Grid container direction="row">
-        <Grid item>
-          <FormControl className={classes.formControl}>
-            <InputLabel
-              className={classes.GreenSeer}
-              id="demo-simple-select-outlined-label"
-            >
-              SE Practice
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={props.name_of_field || ""}
-              onClick={props.handleFieldNameChange}
-              label="Name of Field"
-              name="name_of_field"
-            >
-              <MenuItem value={"TDD"}>TDD</MenuItem>
-              <MenuItem value={"Agile"}>Agile</MenuItem>
-            </Select>
-          </FormControl>
+        <Grid item xs={12} sm={12}>
+          <Autocomplete
+            className={classes.formControl}
+            multiple
+            id="tags-outlined"
+            options={props.available_se_practices}
+            getOptionLabel={(option) => option}
+            defaultValue={[props.available_se_practices[0]]}
+            filterSelectedOptions
+            onChange={(event, newSEPractice) => {
+              props.handleSelectNameChange(newSEPractice);
+              console.log(newSEPractice);
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                variant="outlined"
+                label="SE Practices"
+                placeholder=""
+              />
+            )}
+          />
 
-          <FormControl className={classes.formControl}>
-            <InputLabel
-              id="demo-mutiple-chip-label"
-              className={classes.GreenSeer}
-            >
-              Claims
-            </InputLabel>
-            <Select
-              labelId="demo-mutiple-chip-label"
-              id="demo-mutiple-chip"
-              multiple
-              value={props.selected_value}
-              onChange={props.handleChange}
-              name="selected_value"
-              input={<Input id="select-multiple-chip" />}
-              renderValue={(selected) => (
-                <div>
-                  {selected.map((value) => (
-                    <Chip key={value} label={value} />
-                  ))}
-                </div>
-              )}
-            >
-              {props.values.map((p, index) => (
-                <MenuItem key={index} value={p.value}>
-                  {p.value}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <Autocomplete
+            className={classes.formControl}
+            multiple
+            id="tags-outlined"
+            options={props.available_claims}
+            getOptionLabel={(option) => option}
+            defaultValue={[props.available_claims[0]]}
+            filterSelectedOptions
+            onChange={(event, newClaimBenefit) => {
+              props.handleSelectedClaims(newClaimBenefit);
+              console.log(newClaimBenefit);
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                variant="outlined"
+                label="Claim Benefits"
+                placeholder=""
+              />
+            )}
+          />
 
-          <FormControl className={classes.formControl}>
-            <InputLabel
-              id="demo-mutiple-chip-label"
-              className={classes.GreenSeer}
-            >
-              Methodology
-            </InputLabel>
-            <Select
-              labelId="demo-mutiple-chip-label"
-              id="demo-mutiple-chip"
-              multiple
-              value={props.research_methodology}
-              onChange={props.handleChange}
-              name="research_methodology"
-              input={<Input id="select-multiple-chip" />}
-              renderValue={(selected) => (
-                <div>
-                  {selected.map((value) => (
-                    <Chip key={value} label={value} />
-                  ))}
-                </div>
-              )}
-            >
-              <MenuItem value={"Case Study"}>Case Study</MenuItem>
-              <MenuItem value={"Survey"}>Survey</MenuItem>
-            </Select>
-          </FormControl>
-
+          <Autocomplete
+            className={classes.formControl}
+            multiple
+            id="tags-outlined"
+            options={props.available_research_methodologys}
+            getOptionLabel={(option) => option}
+            defaultValue={[props.available_research_methodologys[0]]}
+            filterSelectedOptions
+            onChange={(event, newSEPractice) => {
+              props.handleSelectMethodologyChange(newSEPractice);
+              console.log(newSEPractice);
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                variant="outlined"
+                label="Research Methodology"
+                placeholder=""
+              />
+            )}
+          />
         </Grid>
       </Grid>
     </Paper>
