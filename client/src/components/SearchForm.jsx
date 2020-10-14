@@ -41,12 +41,10 @@ export default class SearchForm extends Component {
       cancelButtonPressed: false,
       submitButtonPressed: false,
     };
-    this.handleChange = this.handleChange.bind(this);
   }
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.handleChange(e);
     this.fillRecords();
     this.submitButtonPress();
   };
@@ -93,13 +91,6 @@ export default class SearchForm extends Component {
       array = array.concat(tdd_values1);
     }
     if (this.state.selected_se_practices.includes("TDD")) {
-      /*       axios
-      .get("/record_attributes/tdd_claims")
-      .then((res) => {
-        this.setState({ values: res.data });
-      })
-      .catch((err) => console.log(err)); */
-
       var tdd_values2 = [
         "ALL",
         "TDD-Improves Code Quality",
@@ -123,13 +114,7 @@ export default class SearchForm extends Component {
     this.setState({ selected_research_methodology: selected_methodology });
   };
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
   handleSelectNameChange = (selected_SE_Practice) => {
-    this.clearRecords();
-    this.clearFields();
     if(selected_SE_Practice.includes("ALL") && selected_SE_Practice.length !== 1) {
       selected_SE_Practice.shift();
     }
@@ -139,6 +124,7 @@ export default class SearchForm extends Component {
   };
 
   handleSelectedClaims = (selected_claim) => {
+    console.log(selected_claim);
     if(selected_claim.includes("ALL") && selected_claim.length !== 1) {
       selected_claim.shift();
     }
@@ -187,9 +173,6 @@ export default class SearchForm extends Component {
             <Grid item xs={12} sm={8}>
               <form noValidate onSubmit={this.onSubmit}>
                 <SearchQuery
-                  selected_claims={this.state.selected_claims}
-                  selected_se_practices={this.state.selected_se_practices}
-                  handleChange={this.handleChange}
                   handleSelectNameChange={this.handleSelectNameChange}
                   handleSelectedClaims={this.handleSelectedClaims}
                   handleSelectMethodologyChange={
@@ -200,7 +183,6 @@ export default class SearchForm extends Component {
                   available_research_methodologys={
                     this.state.available_research_methodologys
                   }
-                  research_methodology={this.state.research_methodology}
                 />
                 <DateSlider
                   callbackFromParent={this.myCallback}
