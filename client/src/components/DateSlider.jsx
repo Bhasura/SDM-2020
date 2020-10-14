@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import {
   Typography,
-  // Slider,
+  Slider,
   Paper,
   Grid,
   withStyles,
   Container,
 } from "@material-ui/core";
 import DateRadioButtons from "./DateRadioButtons";
-import Nouislider from "nouislider-react";
-import "nouislider/distribute/nouislider.css";
-import wNumb from "wnumb";
+// import Nouislider from "nouislider-react";
+// import "nouislider/distribute/nouislider.css";
+// import wNumb from "wnumb";
 
 const Title = withStyles({
   root: {
@@ -23,18 +23,18 @@ const CustomPaper = withStyles({
   root: {
     backgroundColor: "#D8F3DC",
     //width: 800
-    width: 700,
+    maxWidth: 700,
     marginBottom: 10,
   },
 })(Paper);
 
-// const CustomSlider = withStyles({
-//   root: {
-//     color: "#52B788",
-//     width: 200,
-//     marginTop: 28,
-//   },
-// })(Slider);
+const CustomSlider = withStyles({
+  root: {
+    color: "#52B788",
+    width: 200,
+    marginTop: 28,
+  },
+})(Slider);
 
 const RadioGrid = withStyles({
   root: {
@@ -79,7 +79,7 @@ export default class RangeSlider extends Component {
   };
 
   handleChange = (event, newValue) => {
-    this.setValue(event);
+    this.setValue(newValue);
     console.log(event);
   };
 
@@ -111,7 +111,7 @@ export default class RangeSlider extends Component {
               <Title id="range-slider" gutterBottom>
                 Select Date Range
               </Title>
-              <Nouislider
+              {/* <Nouislider
                 start={this.state.value}
                 onSlide={this.handleChange}
                 tooltips={true}
@@ -120,8 +120,8 @@ export default class RangeSlider extends Component {
                   min: 1990,
                   max: 2020,
                 }}
-              />
-              {/* <CustomSlider
+              /> */}
+              <CustomSlider
                 id="sliderTest"
                 value={this.state.value}
                 onChange={this.handleChange}
@@ -130,7 +130,7 @@ export default class RangeSlider extends Component {
                 getAriaValueText={this.valuetext}
                 min={1990}
                 max={2020}
-              /> */}
+              />
             </DateWrapper>
           </Grid>
           <RadioGrid item>

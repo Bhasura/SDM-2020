@@ -10,14 +10,30 @@ const SearchButton = withStyles({
   root: {
     backgroundColor: "#2D6A4F",
     color: "white",
+    float: "right",
+    "&:hover" : {
+      backgroundColor: "#4AD293",
+    }
   },
 })(Button);
 const CancelButton = withStyles({
   root: {
     backgroundColor: "#40916C",
     color: "white",
+    float: "left",
+    "&:hover" : {
+      backgroundColor: "#4AD293",
+    }
   },
 })(Button);
+
+// const useStyles = makeStyles(theme => ({
+//   alignItemsAndJustifyContent: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// }))
 
 export default class SearchForm extends Component {
   constructor() {
@@ -108,14 +124,14 @@ export default class SearchForm extends Component {
   };
 
   handleSelectMethodologyChange = (selected_methodology) => {
-    if(selected_methodology.includes("ALL") && selected_methodology.length !== 1) {
+    if (selected_methodology.includes("ALL") && selected_methodology.length !== 1) {
       selected_methodology.shift();
     }
     this.setState({ selected_research_methodology: selected_methodology });
   };
 
   handleSelectNameChange = (selected_SE_Practice) => {
-    if(selected_SE_Practice.includes("ALL") && selected_SE_Practice.length !== 1) {
+    if (selected_SE_Practice.includes("ALL") && selected_SE_Practice.length !== 1) {
       selected_SE_Practice.shift();
     }
     this.setState({ selected_se_practices: selected_SE_Practice }, () =>
@@ -125,7 +141,7 @@ export default class SearchForm extends Component {
 
   handleSelectedClaims = (selected_claim) => {
     console.log(selected_claim);
-    if(selected_claim.includes("ALL") && selected_claim.length !== 1) {
+    if (selected_claim.includes("ALL") && selected_claim.length !== 1) {
       selected_claim.shift();
     }
     this.setState({ selected_claims: selected_claim });
@@ -164,31 +180,34 @@ export default class SearchForm extends Component {
   };
 
   render() {
+
     return (
       <div style={{ padding: 100 }}>
-        <Grid container direction="row" spacing={0}>
-          <Grid item container>
+        <Grid container direction="row" spacing={0} justify={"center"}>
+          <Grid item >
             {/* <Grid item xs={1} sm={2} md={1} /> */}
-            <Grid item xs={1} sm={2} />
-            <Grid item xs={12} sm={8}>
-              <form noValidate onSubmit={this.onSubmit}>
-                <SearchQuery
-                  handleSelectNameChange={this.handleSelectNameChange}
-                  handleSelectedClaims={this.handleSelectedClaims}
-                  handleSelectMethodologyChange={
-                    this.handleSelectMethodologyChange
-                  }
-                  available_se_practices={this.state.available_se_practices}
-                  available_claims={this.state.available_claims}
-                  available_research_methodologys={
-                    this.state.available_research_methodologys
-                  }
-                />
-                <DateSlider
-                  callbackFromParent={this.myCallback}
-                  from_date={this.state.from_date}
-                  to_date={this.state.to_date}
-                />
+            {/* <Grid item xs={1} sm={2} /> */}
+            {/* <Grid item xs={12} sm={8}> */}
+              <form noValidate onSubmit={this.onSubmit} >
+                  <SearchQuery
+                    handleSelectNameChange={this.handleSelectNameChange}
+                    handleSelectedClaims={this.handleSelectedClaims}
+                    handleSelectMethodologyChange={
+                      this.handleSelectMethodologyChange
+                    }
+                    available_se_practices={this.state.available_se_practices}
+                    available_claims={this.state.available_claims}
+                    available_research_methodologys={
+                      this.state.available_research_methodologys
+                    }
+                  />
+                 
+                  <DateSlider
+                    callbackFromParent={this.myCallback}
+                    from_date={this.state.from_date}
+                    to_date={this.state.to_date}
+                  />
+            
                 <Grid item xs={1} sm={2} md={5} />
                 <SearchButton type="submit" variant="contained">
                   Search
@@ -204,7 +223,6 @@ export default class SearchForm extends Component {
                 >
                   Reset
                 </CancelButton>
-              </Grid>
             </Grid>
             <Grid item xs={1} sm={2} />
           </Grid>

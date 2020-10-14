@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   PaperBack: {
     backgroundColor: "#D8F3DC",
-    width: 700,
+    maxWidth: 700,
     marginBottom: 10,
   },
 }));
