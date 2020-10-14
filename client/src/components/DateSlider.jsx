@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {
   Typography,
-  Slider,
+  // Slider,
   Paper,
   Grid,
   withStyles,
@@ -28,13 +28,13 @@ const CustomPaper = withStyles({
   },
 })(Paper);
 
-const CustomSlider = withStyles({
-  root: {
-    color: "#52B788",
-    width: 200,
-    marginTop: 28,
-  },
-})(Slider);
+// const CustomSlider = withStyles({
+//   root: {
+//     color: "#52B788",
+//     width: 200,
+//     marginTop: 28,
+//   },
+// })(Slider);
 
 const RadioGrid = withStyles({
   root: {
