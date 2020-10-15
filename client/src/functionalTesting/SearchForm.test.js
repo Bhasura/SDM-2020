@@ -59,8 +59,7 @@ describe("handleChange", () => {
       
     const expected = {
       available_claims: ["ALL",
-      "Agile-Claim 1",
-      "Agile-Claim 2",
+      "Agile-Increases Productivity",
       "TDD-Improves Code Quality",
       "TDD-Improves Team Confidence",],
       available_se_practices: ["ALL", "TDD", "Agile"],
@@ -125,8 +124,7 @@ describe("onCancel", () => {
   it("should clear fields on cancel", () => {
     const expected = {
       available_claims: ["ALL",
-      "Agile-Claim 1",
-      "Agile-Claim 2",
+      "Agile-Increases Productivity",
       "TDD-Improves Code Quality",
       "TDD-Improves Team Confidence",],
       available_se_practices: ["ALL", "TDD", "Agile"],

@@ -11,17 +11,44 @@ import {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    fontFamily: "Oswald"
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1,
+    flexGrow: 2,
+    fontFamily: "Oswald"
   },
 }));
 
+const searchButtonStyles = makeStyles((theme) => ({
+  root: {
+    marginRight: 30,
+    "&:hover": {
+      backgroundColor: "#4AD293"
+    }
+  }
+}));
+
+const loginRegisterButtonStyles = makeStyles((theme) => ({
+  root: {
+    "&:hover": {
+      backgroundColor: "#4AD293"
+    }
+  }
+}));
+
+
 const Navbar = () => {
   const classes = useStyles();
+  const searchStyles = searchButtonStyles();
+  const loginRegisterStyles = loginRegisterButtonStyles();
+
+  const navbarWrapper = {
+    marginLeft: 100,
+    marginRight: 100
+  }
 
   return (
     <AppBar
@@ -32,23 +59,28 @@ const Navbar = () => {
       }}
       position="static"
     >
-      <Toolbar style={{ margin: 10 }}>
-        <Typography variant="h6" className={classes.title}>
-          SEER
+      <div style={navbarWrapper}>
+        <Toolbar style={{ margin: 10 }}>
+          <Typography variant="h4" className={classes.title}>
+            SEER
         </Typography>
-        <Button color="inherit" component={Link} to="/search">
-          Search
+          <Button color="inherit" component={Link} to="/search" className={searchStyles.root} >
+            <div style={{ paddingLeft: 5, paddingRight: 5 }}>
+              Search
+          </div>
+          </Button>
+          <Button
+            variant="outlined"
+            color="inherit"
+            component={Link}
+            to="/register"
+            size="medium"
+            className={loginRegisterStyles.root}
+          >
+            Login/Register
         </Button>
-        <Button
-          variant="outlined"
-          color="inherit"
-          component={Link}
-          to="/register"
-          size="medium"
-        >
-          Login/Register
-        </Button>
-      </Toolbar>
+        </Toolbar>
+      </div>
     </AppBar>
   );
 };

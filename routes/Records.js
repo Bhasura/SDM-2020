@@ -14,7 +14,8 @@ records.get("/records", function (req, res) {
     se_practice = ["TDD", "Agile"];
   }
   if (claims === undefined || claims.includes("ALL")) {
-    claims = ["TDD-Improves Code Quality", "TDD-Improves Team Confidence"];
+    console.log(claims)
+    claims = ["TDD-Improves Code Quality", "TDD-Improves Team Confidence", "Agile-Increases Productivity"];
   }
   if (research_methodology === undefined || research_methodology.includes("ALL")) {
     research_methodology = ["Case Study", "Survey"];

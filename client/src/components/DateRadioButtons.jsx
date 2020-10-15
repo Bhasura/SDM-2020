@@ -3,7 +3,17 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
-import { Grid } from "@material-ui/core";
+import { Grid, withStyles } from "@material-ui/core";
+
+const GreenRadio = withStyles({
+  root: {
+    color: "#2D6A4F",
+    '&$checked': {
+      color: "#2D6A4F",
+    },
+  },
+  checked: {},
+})((props) => <Radio color="default" {...props} />);
 
 export default class RadioButtonsGroup extends Component {
   constructor() {
@@ -24,6 +34,7 @@ export default class RadioButtonsGroup extends Component {
   }
 
   render() {
+
     return (
       <Grid container direction="row">
         <FormControl>
@@ -36,18 +47,18 @@ export default class RadioButtonsGroup extends Component {
           >
           <FormControlLabel
             value="0"
-            control={<Radio />}
+            control={<GreenRadio />}
             label="This Year"
           />
           <FormControlLabel
             value="5"
             id="last5Years"
-            control={<Radio />}
+            control={<GreenRadio />}
             label="Last 5 Years"
           />
           <FormControlLabel
             value="30"
-            control={<Radio />}
+            control={<GreenRadio />}
             label="All Years"
           />
           </RadioGroup>
