@@ -86,9 +86,6 @@ export default function EnhancedTable(props) {
     setPage(0);
   };
 
-  const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
