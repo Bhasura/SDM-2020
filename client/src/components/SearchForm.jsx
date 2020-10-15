@@ -213,7 +213,7 @@ export default class SearchForm extends Component {
                   onClick={this.onCancel}
                   className="cancel_button"
                 >
-                  Reset
+                  New Search
                 </CancelButton>
             </Grid>
             <Grid item xs={1} sm={2} />
