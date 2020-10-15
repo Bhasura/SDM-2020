@@ -31,10 +31,19 @@ const searchButtonStyles = makeStyles((theme) => ({
   }
 }));
 
+const loginRegisterButtonStyles = makeStyles((theme) => ({
+  root: {
+    "&:hover": {
+      backgroundColor: "#4AD293"
+    }
+  }
+}));
+
 
 const Navbar = () => {
   const classes = useStyles();
   const searchStyles = searchButtonStyles();
+  const loginRegisterStyles = loginRegisterButtonStyles();
 
   const navbarWrapper = {
     marginLeft: 100,
@@ -66,6 +75,7 @@ const Navbar = () => {
             component={Link}
             to="/register"
             size="medium"
+            className={loginRegisterStyles.root}
           >
             Login/Register
         </Button>

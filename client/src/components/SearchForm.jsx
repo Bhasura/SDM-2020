@@ -13,9 +13,11 @@ const SearchButton = withStyles({
     float: "right",
     "&:hover" : {
       backgroundColor: "#4AD293",
-    }
+    },
+    marginBottom: 50,
   },
 })(Button);
+
 const CancelButton = withStyles({
   root: {
     backgroundColor: "#40916C",
@@ -23,17 +25,10 @@ const CancelButton = withStyles({
     float: "left",
     "&:hover" : {
       backgroundColor: "#4AD293",
-    }
+    },
+    marginBottom: 50,
   },
 })(Button);
-
-// const useStyles = makeStyles(theme => ({
-//   alignItemsAndJustifyContent: {
-//     display: 'flex',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// }))
 
 export default class SearchForm extends Component {
   constructor() {
@@ -180,9 +175,8 @@ export default class SearchForm extends Component {
   };
 
   render() {
-
     return (
-      <div style={{ padding: 100 }}>
+      <div style={{ paddingTop: 50, paddingLeft: 100, paddingRight: 100, paddingBottom: 50}}>
         <Grid container direction="row" spacing={0} justify={"center"}>
           <Grid item >
             {/* <Grid item xs={1} sm={2} md={1} /> */}
@@ -201,13 +195,11 @@ export default class SearchForm extends Component {
                       this.state.available_research_methodologys
                     }
                   />
-                 
                   <DateSlider
                     callbackFromParent={this.myCallback}
                     from_date={this.state.from_date}
                     to_date={this.state.to_date}
                   />
-            
                 <Grid item xs={1} sm={2} md={5} />
                 <SearchButton type="submit" variant="contained">
                   Search

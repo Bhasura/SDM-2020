@@ -4,6 +4,16 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  head: {
+    background: "#2D6A4F",
+  },
+  root: {
+    color: "#FFFFFF"
+  }
+}));
 
 const headCells = [
   {
@@ -42,17 +52,19 @@ export default function EnhancedTableHead(props) {
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
+  const row = useStyles();
+  
   return (
     <TableHead>
       <TableRow>
         {headCells.map((headCell) => (
-          <TableCell
+          <TableCell className={row.head}
             key={headCell.id}
             align={headCell.numeric ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "default"}
             sortDirection={orderBy === headCell.id ? order : false}
           >
-            <TableSortLabel
+            <TableSortLabel className={row.root}
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
