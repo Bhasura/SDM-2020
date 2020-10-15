@@ -67,7 +67,7 @@ export default function EnhancedTable(props) {
   const selected = [];
   const [page, setPage] = React.useState(0);
   const dense = false;
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -153,7 +153,7 @@ export default function EnhancedTable(props) {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[10, 20, 30]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
