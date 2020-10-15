@@ -28,6 +28,11 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 700,
     marginBottom: 10,
   },
+  tag: {
+    backgroundColor: "#ACE4CB",
+    border: "1px solid #2D6A4F",
+    color: "#2D6A4F"
+  }
 }));
 
 const SearchQuery = (props) => {
@@ -39,6 +44,9 @@ const SearchQuery = (props) => {
         <Grid item xs={12} sm={12}>
           <Autocomplete
             className={classes.formControl}
+            classes={{
+              tag: classes.tag
+            }}
             multiple
             id="tags-outlined"
             options={props.available_se_practices}
@@ -61,6 +69,10 @@ const SearchQuery = (props) => {
 
           <Autocomplete
             className={classes.formControl}
+            classes={{
+              root: classes.root,
+              tag: classes.tag
+            }}
             multiple
             id="tags-outlined"
             options={props.available_claims}
@@ -83,6 +95,9 @@ const SearchQuery = (props) => {
 
           <Autocomplete
             className={classes.formControl}
+            classes={{
+              tag: classes.tag
+            }}
             multiple
             id="tags-outlined"
             options={props.available_research_methodologys}
